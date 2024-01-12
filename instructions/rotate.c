@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/12 23:57:21 by vketteni         ###   ########.fr       */
+/*   Created: 2024/01/12 22:15:55 by vketteni          #+#    #+#             */
+/*   Updated: 2024/01/12 22:36:18 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+#include "../push_swap.h"
 
-# include "libft/libft.h"
-# include "ft_printf/ft_printf.h"
+t_list	*ft_rra(t_list *stack)
+{
+	
+}
 
-t_list	**ft_pa(t_list **stack_a, t_list **stack_b);
+t_list	*ft_rrb(t_list *stack)
+{
+	
+}
 
-#endif
+t_list	*ft_rrr(t_list *stack)
+{
+	
+}
