@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 21:27:14 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/12 22:11:41 by vketteni         ###   ########.fr       */
+/*   Created: 2024/01/12 22:10:10 by vketteni          #+#    #+#             */
+/*   Updated: 2024/01/13 13:28:50 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-t_list	*ft_sa(t_list *stack)
+void	ft_push(t_list **stack_a, t_list **stack_b)
 {
-	
-}
+	t_list	*tmp_ref;
 
-t_list	*ft_sb(t_list *stack)
-{
-	
-}
-	
-t_list	*ft_ss(t_list *stack)
-{
-	
+	if (stack_b == NULL || stack_a == NULL)
+		return ;
+	if (*stack_a == NULL)
+		return ;
+	tmp_ref = *stack_a;
+	*stack_a = (*stack_a)->next;
+	tmp_ref->next = *stack_b;
+	stack_b = &tmp_ref;
 }

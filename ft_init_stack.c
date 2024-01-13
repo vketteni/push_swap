@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reverse_rotate.c                                   :+:      :+:    :+:   */
+/*   ft_init_stack.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 22:15:25 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/12 22:15:53 by vketteni         ###   ########.fr       */
+/*   Created: 2024/01/13 14:59:48 by vketteni          #+#    #+#             */
+/*   Updated: 2024/01/13 15:08:42 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-t_list	*ft_ra(t_list *stack)
+void    ft_init_stack(t_list **stack, char **numbers, int len)
 {
-	
-}
 
-t_list	*ft_rb(t_list *stack)
-{
-	
+    while (len > 0)
+    ft_lstnew()
 }
