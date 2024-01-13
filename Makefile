@@ -2,30 +2,26 @@ NAME = push_swap
 SRCS = push_swap.c
 OBJS = ${SRCS:.c=.o}
 CC = cc
-FLAGS = -Wall -Wextra -Werror -Iincludes
-%.o: %.c
-	@${CC} ${FLAGS} -Ilibft -Ift_printf -c $? -o $@
+FLAGS = -Wall -Wextra -Werror 
+
+%.o: %.c 
+	${CC} ${FLAGS} -Isubmodules/libft -Isubmodules/ft_printf -c $? -o $@
+
 all: ${NAME}
 
-NAME: ${OBJS}
-	@${MAKE} -C libft
-	@${MAKE} -C ft_printf
-	@${CC} ${FLAGS} ${OBJS} -Llibft -llibft -Lft_printf -lft_printf -o ${NAME}
-
-LIBFT:
-	@${MAKE} -C libft
-
-FT_PRINTF:
-	@${MAKE} -C ft_printf
+${NAME}: ${OBJS}
+	@${MAKE} -C submodules/libft bonus
+	@${MAKE} -C submodules/ft_printf
+	@${CC} ${FLAGS} ${OBJS} -Lsubmodules/libft -lft -Lsubmodules/ft_printf -lftprintf -o ${NAME}
 
 clean:
-	@${MAKE} clean -C ./libft
-	@${MAKE} clean -C ./ft_printf
+	@${MAKE} clean -C submodules/libft
+	@${MAKE} clean -C submodules/ft_printf
 	@rm -f ${OBJS}
 
 fclean: clean
-	@${MAKE} fclean -C ./libft
-	@${MAKE} fclean -C ./ft_printf
+	@${MAKE} fclean -C submodules/libft
+	@${MAKE} fclean -C submodules/ft_printf
 	@rm -f ${NAME}
 
 re: fclean all

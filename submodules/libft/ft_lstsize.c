@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vketteni <vketteni@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/13 01:21:54 by vketteni         ###   ########.fr       */
+/*   Created: 2023/12/01 13:39:12 by vketteni          #+#    #+#             */
+/*   Updated: 2023/12/01 13:40:18 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+int	ft_lstsize(t_list *lst)
+{
+	int	size;
 
-# include "submodules/libft/libft.h"
-# include "submodules/ft_printf/ft_printf.h"
-
-t_list	**ft_pa(t_list **stack_a, t_list **stack_b);
-
-#endif
+	if (lst == 0)
+		return (0);
+	size = 1;
+	while (lst->next != 0)
+	{
+		lst = lst->next;
+		size++;
+	}
+	return (size);
+}

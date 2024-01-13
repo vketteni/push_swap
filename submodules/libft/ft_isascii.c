@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vketteni <vketteni@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 14:54:00 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/13 00:04:14 by vketteni         ###   ########.fr       */
+/*   Created: 2023/11/14 12:50:44 by vketteni          #+#    #+#             */
+/*   Updated: 2023/12/01 12:52:09 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-int main(void)
-//int main(int argc, char** argv)
+int	ft_isascii(int c)
 {
-
-    ft_printf("ooohhwee");
-    return (1);
+	if (c >= 0 && c <= 127)
+		return (1);
+	return (0);
 }
+
+/*
+#include <stdio.h>
+#include <ctype.h>
+void main (void)
+{
+	unsigned int c;
+	c = 0;
+	printf("%c\n", c);
+	printf("%d\n", ft_isascii(c));
+	printf("%d\n", isascii(c));
+}
+*/

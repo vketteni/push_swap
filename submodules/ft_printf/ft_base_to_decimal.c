@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_base_to_decimal.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/13 01:21:54 by vketteni         ###   ########.fr       */
+/*   Created: 2024/01/06 21:34:06 by vketteni          #+#    #+#             */
+/*   Updated: 2024/01/07 00:56:02 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+#include "ft_printf.h"
 
-# include "submodules/libft/libft.h"
-# include "submodules/ft_printf/ft_printf.h"
+int	ft_base_to_decimal(char *src, char *base)
+{
+	int	n;
+	int	base_length;
 
-t_list	**ft_pa(t_list **stack_a, t_list **stack_b);
-
-#endif
+	base_length = 0;
+	while (*(base + base_length))
+		base_length++;
+	n = *(src)-base[0];
+	while (*(src))
+		n = (n * base_length) + *(src++) - base[0];
+	return (n);
+}

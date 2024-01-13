@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vketteni <vketteni@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/13 01:21:54 by vketteni         ###   ########.fr       */
+/*   Created: 2023/11/16 13:12:45 by vketteni          #+#    #+#             */
+/*   Updated: 2023/12/01 12:46:50 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+char	*ft_strrchr(const char *src, char c)
+{
+	const char	*last_occurence;
 
-# include "submodules/libft/libft.h"
-# include "submodules/ft_printf/ft_printf.h"
-
-t_list	**ft_pa(t_list **stack_a, t_list **stack_b);
-
-#endif
+	last_occurence = 0;
+	while (*src)
+	{
+		if (*src == c)
+			last_occurence = src;
+		src++;
+	}
+	if (*src == c)
+		last_occurence = src;
+	return ((char *)last_occurence);
+}

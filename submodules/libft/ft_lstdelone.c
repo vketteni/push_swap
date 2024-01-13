@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vketteni <vketteni@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/13 01:21:54 by vketteni         ###   ########.fr       */
+/*   Created: 2023/12/01 12:50:23 by vketteni          #+#    #+#             */
+/*   Updated: 2023/12/01 12:51:07 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
+#include "libft.h"
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
-
-# include "submodules/libft/libft.h"
-# include "submodules/ft_printf/ft_printf.h"
-
-t_list	**ft_pa(t_list **stack_a, t_list **stack_b);
-
-#endif
+void	ft_lstdelone(t_list *lst, void (*del) (void*))
+{
+	del(lst->content);
+	free(lst);
+}

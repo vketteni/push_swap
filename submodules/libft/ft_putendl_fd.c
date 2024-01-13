@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vketteni <vketteni@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/13 01:21:54 by vketteni         ###   ########.fr       */
+/*   Created: 2023/11/24 14:29:56 by vketteni          #+#    #+#             */
+/*   Updated: 2023/12/01 13:41:16 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <unistd.h>
+#include "libft.h"
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
-
-# include "submodules/libft/libft.h"
-# include "submodules/ft_printf/ft_printf.h"
-
-t_list	**ft_pa(t_list **stack_a, t_list **stack_b);
-
-#endif
+void	ft_putendl_fd(char *s, int fd)
+{
+	write(fd, s, ft_strlen(s));
+	write(fd, "\n", 1);
+}

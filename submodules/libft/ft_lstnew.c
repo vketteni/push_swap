@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vketteni <vketteni@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/13 01:21:54 by vketteni         ###   ########.fr       */
+/*   Created: 2023/12/01 13:05:09 by vketteni          #+#    #+#             */
+/*   Updated: 2023/12/01 13:06:15 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
+#include "libft.h"
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*result;
 
-# include "submodules/libft/libft.h"
-# include "submodules/ft_printf/ft_printf.h"
-
-t_list	**ft_pa(t_list **stack_a, t_list **stack_b);
-
-#endif
+	result = (t_list *)malloc(sizeof(t_list));
+	if (result == 0)
+		return (0);
+	result->content = content;
+	result->next = 0;
+	return (result);
+}

@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/13 01:21:54 by vketteni         ###   ########.fr       */
+/*   Created: 2023/12/04 16:37:37 by vketteni          #+#    #+#             */
+/*   Updated: 2024/01/12 11:42:41 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+#include "ft_printf.h"
 
-# include "submodules/libft/libft.h"
-# include "submodules/ft_printf/ft_printf.h"
+int	ft_printf(const char *format, ...)
+{
+	int		print_count;
+	va_list	args;
 
-t_list	**ft_pa(t_list **stack_a, t_list **stack_b);
+	if (format == 0)
+		return (0);
+	va_start(args, format);
+	print_count = ft_print_format_string(format, &args);
+	va_end(args);
+	return (print_count);
+}
 
-#endif
+/* int	main(void)
+{
+	ft_printf(" '%d' \n",
+		ft_printf(" '%u' \n", 123)
+		);
+
+	return (0);
+} */

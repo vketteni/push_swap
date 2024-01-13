@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vketteni <vketteni@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/13 01:21:54 by vketteni         ###   ########.fr       */
+/*   Created: 2023/11/16 14:04:17 by vketteni          #+#    #+#             */
+/*   Updated: 2023/12/01 13:34:15 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdlib.h>
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+void	*ft_memchr(void *src, char chr, size_t n)
+{
+	const unsigned char	*s;
+	unsigned char		c;
 
-# include "submodules/libft/libft.h"
-# include "submodules/ft_printf/ft_printf.h"
-
-t_list	**ft_pa(t_list **stack_a, t_list **stack_b);
-
-#endif
+	s = src;
+	c = (unsigned char)chr;
+	while (n > 0)
+	{
+		if (*s == c)
+			return ((void *)s);
+		s++;
+		n--;
+	}
+	return (0);
+}

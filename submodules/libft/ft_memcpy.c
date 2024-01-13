@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vketteni <vketteni@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 14:54:00 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/13 00:04:14 by vketteni         ###   ########.fr       */
+/*   Created: 2023/11/14 14:31:14 by vketteni          #+#    #+#             */
+/*   Updated: 2023/12/01 13:38:55 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "push_swap.h"
-
-int main(void)
-//int main(int argc, char** argv)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
+	char	*d;
+	char	*s;
+	size_t	i;
 
-    ft_printf("ooohhwee");
-    return (1);
+	if (dst == src)
+		return (dst);
+	d = (char *)dst;
+	s = (char *)src;
+	i = 0;
+	while (i < n)
+	{
+		d[i] = s[i];
+		i++;
+	}
+	return (dst);
 }

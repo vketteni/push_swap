@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/13 01:21:54 by vketteni         ###   ########.fr       */
+/*   Created: 2023/12/11 20:11:12 by vincentkett       #+#    #+#             */
+/*   Updated: 2024/01/07 00:37:04 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+#include "ft_printf.h"
 
-# include "submodules/libft/libft.h"
-# include "submodules/ft_printf/ft_printf.h"
+int	ft_print_ptr(void *p)
+{
+	long unsigned	ptr;
 
-t_list	**ft_pa(t_list **stack_a, t_list **stack_b);
-
-#endif
+	ptr = (long unsigned)p;
+	if (!p)
+		return (ft_print_str("0x0"));
+	else
+		return (ft_print_str("0x") + ft_print_hex(ptr, 0));
+}
