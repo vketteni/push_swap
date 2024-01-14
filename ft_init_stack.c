@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 14:59:48 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/13 15:08:42 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/13 20:57:00 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,4 @@
 void    ft_init_stack(t_list **stack, char **numbers, int len)
 {
 
-    while (len > 0)
-    ft_lstnew()
 }
