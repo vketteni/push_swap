@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:54:00 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/13 22:26:23 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/14 20:37:12 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,61 @@
 // int main(void)
 int main(int argc, char** argv)
 {
+	t_list	**stack_a;
+	t_list	**stack_b;
+
 	if (argc < 2)
 		return (0);
-    ft_print_operations(argc, argv, INSERTIONSORT);
+	ft_init_stack(stack_a, argc, argv);
+    ft_print_operations(stack_a, stack_b, argc - 1);
 
     return (0);
 }
 
-void    ft_print_operations(int argc, char **argv, int sort_alg)
+void    ft_print_operations(t_list **stack_a, t_list **stack_b, int unordered)
 {
-    if (sort_alg == INSERTIONSORT)
-        ft_print_INSERTIONSORT(argc, argv);
-    if (sort_alg == SELECTIONSORT)
-        ft_print_SELECTIONSORT(argc, argv);
+    char	**sort_operations;
+	int		*bottom;
+    int		*top;
+
+    while (unordered > 0)
+    {
+		if (1)
+			sort_operations = ft_selection_sort(stack_a, stack_b, bottom, top);
+		if (sort_operations == NULL)
+			return ((void)ft_printf("Error \n"));
+		ft_printf(sort_operations);
+		unordered--;
+    }
+}
+
+static void	ft_init_top_and_bottom(t_list **stack, int *top, int *bottom)
+{
+	*top = (*stack)->content;
+	*bottom = (*stack)->content;
+}
+
+char *ft_select_and_swap(t_list **stack_a, int distance)
+{
+	char *sort_operations;
+	while 
+
+	return ();
 }
 
 /* 	
-*	Merge Sort is a divide-and-conquer sorting algorithm. 
-*	It works by recursively dividing the unsorted list into 
-*	smaller sub-lists until each sub-list contains only one element. 
-*	Then, it merges these sub-lists in a way that the merged list is sorted. 
-*	This process continues until the entire list is sorted.
+
 */
-void	ft_print_SELECTIONSORT(int argc, char **argv)
+char	*ft_selection_sort(t_list **stack_a, t_list **stack_b, int *bottom, int *top)
 {
-	char	**sort_operations;
-	t_list	**stack_a;
-	t_list	**stack_b;
+	int	distance_new_bottom;
+	int	distance_new_top;
 
-	ft_init_stack(stack_a, argc, argv);
-
+	if (*top == NULL && *bottom == NULL)
+		ft_init_top_and_bottom(stack_a, top, bottom);
+	ft_init_top_and_bot_distance(distance_new_bottom, distance_new_top, bottom, top);
+	if (distance_new_bottom <= distance_new_top)
+		return (ft_select_and_swap(stack_a, distance_new_bottom));
+	else
+		return (ft_select_and_swap(stack_a, distance_new_top));
 }
-
-char	*ft_pa
