@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:54:00 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/15 09:13:04 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/16 00:29:09 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,15 @@ int main(int argc, char** argv)
 void    ft_print_operations(t_dlist **stack_a, t_dlist **stack_b, int unordered)
 {
     char	**sort_operations;
-	int		*bottom;
-    int		*top;
+    int		*sorted_top;
+	int		*sorted_bottom;
 
+	sorted_top = *stack_a;
+	sorted_bottom = *stack_a;
     while (unordered > 0)
     {
 		if (1)
-			sort_operations = ft_selection_sort(stack_a, stack_b, bottom, top);
+			sort_operations = ft_selection_sort(stack_a, stack_b, sorted_bottom, sorted_top);
 		if (sort_operations == NULL)
 			return ((void)ft_printf("Error \n"));
 		ft_printf(sort_operations);
@@ -43,52 +45,82 @@ void    ft_print_operations(t_dlist **stack_a, t_dlist **stack_b, int unordered)
     }
 }
 
-static void	ft_init_top_and_bottom(t_dlist **stack, int *top, int *bottom)
+t_dlist	*ft_select_upwards(t_dlist **stack, t_dlist *last, int distance)
 {
-	*top = (*stack)->content;
-	*bottom = (*stack)->content;
-}
+	t_dlist	*next_sorted;
 
-char *ft_select_and_swap(t_dlist **stack_a, int distance)
-{
-	char 	*sort_operations;
-	t_dlist	*elem;
-
-	elem = (*stack_a);
-	sort_operations = ft_ra(distance);
-	if (distance < 0)
+	next_sorted = last;
+	while (distance)
 	{
-		elem = ft_dlstlast(*stack_a);
-		sort_operations = ft_rra(-distance);
-	}
-	while (distance < 0 )
-	{
-		elem = elem->prev;
-		distance++;
-	}
-	while (distance > 0)
-	{
-		elem = elem->next;
+		if (next_sorted->next == NULL)
+			next_sorted = *stack;
+		else
+			next_sorted = next_sorted->next;
 		distance--;
 	}
-	(elem->prev)->next = elem->next;
-	
-	return ();
+	return (next_sorted);
 }
 
-/* 	
+t_dlist	*ft_select_backwards(t_dlist **stack, t_dlist *last, int distance)
+{
+	t_dlist	*next_sorted;
 
-*/
-char	*ft_selection_sort(t_dlist **stack_a, t_dlist **stack_b, int *bottom, int *top)
+	next_sorted = last;
+	while (distance)
+	{
+		if (next_sorted->prev == NULL)
+			next_sorted = ft_dlstlast(*stack);
+		else
+			next_sorted = next_sorted->prev;
+		distance--;
+	}
+	return (next_sorted);
+}
+
+void	ft_swap_next(t_dlist *unsorted_elem, t_dlist *next_sorted)
+{
+	t_dlist *adjacent_elem;
+	t_dlist *tmp;
+
+		tmp = unsorted_elem;
+		if (unsorted_elem == NULL)
+		next_sorted->next = unsorted_elem->next;	 
+		adjacent_elem = next_sorted->next;
+		if (adjacent_elem != NULL)
+			adjacent_elem->prev = next_sorted->prev;
+		
+		adjacent_elem = last->prev;
+		next_sorted->prev = adjacent_elem;
+		if (adjacent_elem != NULL)
+			adjacent_elem->next = next_sorted;
+		last->prev = next_sorted;
+}
+
+
+char *ft_select_and_swap(t_dlist **stack_a, t_dlist *last, int distance)
+{
+	char 	*sort_operations;
+	t_dlist	*next_sorted;
+
+	if (distance < 0)
+		next_sorted = ft_select_backwards(stack_a, last, -distance);
+	else
+		next_sorted = ft_select_upwards(stack_a, last, distance);
+	if (last->content > next_sorted->content)
+		ft_swap_next(last->prev, next_sorted);
+	else
+		ft_swap_next_top(last, next_sorted);	
+	return (ft_selection_sort_operations(distance));
+}
+
+char	*ft_selection_sort(t_dlist **stack_a, t_dlist **stack_b, t_dlist *sorted_top, t_dlist *sorted_bottom)
 {
 	int	distance_new_bottom;
 	int	distance_new_top;
 
-	if (*top == NULL && *bottom == NULL)
-		ft_init_top_and_bottom(stack_a, top, bottom);
-	ft_init_top_and_bot_distance(distance_new_bottom, distance_new_top, bottom, top);
-	if (distance_new_bottom <= distance_new_top)
-		return (ft_select_and_swap(stack_a, distance_new_bottom));
+	ft_init_next_distance(distance_new_bottom, distance_new_top, sorted_bottom, sorted_top);
+	if (distance_new_top <= distance_new_bottom)
+		return (ft_select_and_swap(stack_a, sorted_top, distance_new_top));
 	else
-		return (ft_select_and_swap(stack_a, distance_new_top));
+		return (ft_select_and_swap(stack_a, sorted_bottom, distance_new_bottom));
 }
