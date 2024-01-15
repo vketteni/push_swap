@@ -1,0 +1,6 @@
+[submodule "submodules/libft"]
+	path = submodules/libft
+	url = git@github.com:vketteni/libft.git
+[submodule "submodules/ft_printf"]
+	path = submodules/ft_printf
+	url = git@github.com:vketteni/ft_printf.git
