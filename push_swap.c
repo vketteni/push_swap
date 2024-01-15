@@ -55,15 +55,24 @@ char *ft_select_and_swap(t_dlist **stack_a, int distance)
 	t_dlist	*elem;
 
 	elem = (*stack_a);
-	while (distance > 0)
-		elem = elem->next;
-	while (distance < 0)
-		elem = elem->prev;
-
+	sort_operations = ft_ra(distance);
+	if (distance < 0)
+	{
+		elem = ft_dlstlast(*stack_a);
+		sort_operations = ft_rra(-distance);
 	}
-
-
-
+	while (distance < 0 )
+	{
+		elem = elem->prev;
+		distance++;
+	}
+	while (distance > 0)
+	{
+		elem = elem->next;
+		distance--;
+	}
+	(elem->prev)->next = elem->next;
+	
 	return ();
 }
 
