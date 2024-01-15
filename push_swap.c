@@ -15,8 +15,8 @@
 // int main(void)
 int main(int argc, char** argv)
 {
-	t_list	**stack_a;
-	t_list	**stack_b;
+	t_dlist	**stack_a;
+	t_dlist	**stack_b;
 
 	if (argc < 2)
 		return (0);
@@ -26,7 +26,7 @@ int main(int argc, char** argv)
     return (0);
 }
 
-void    ft_print_operations(t_list **stack_a, t_list **stack_b, int unordered)
+void    ft_print_operations(t_dlist **stack_a, t_dlist **stack_b, int unordered)
 {
     char	**sort_operations;
 	int		*bottom;
@@ -43,16 +43,16 @@ void    ft_print_operations(t_list **stack_a, t_list **stack_b, int unordered)
     }
 }
 
-static void	ft_init_top_and_bottom(t_list **stack, int *top, int *bottom)
+static void	ft_init_top_and_bottom(t_dlist **stack, int *top, int *bottom)
 {
 	*top = (*stack)->content;
 	*bottom = (*stack)->content;
 }
 
-char *ft_select_and_swap(t_list **stack_a, int distance)
+char *ft_select_and_swap(t_dlist **stack_a, int distance)
 {
 	char 	*sort_operations;
-	t_list	*elem;
+	t_dlist	*elem;
 
 	elem = (*stack_a);
 	while (distance > 0)
@@ -70,7 +70,7 @@ char *ft_select_and_swap(t_list **stack_a, int distance)
 /* 	
 
 */
-char	*ft_selection_sort(t_list **stack_a, t_list **stack_b, int *bottom, int *top)
+char	*ft_selection_sort(t_dlist **stack_a, t_dlist **stack_b, int *bottom, int *top)
 {
 	int	distance_new_bottom;
 	int	distance_new_top;

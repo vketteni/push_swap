@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-t_list	**rotate(t_list **stack)
+t_dlist	**rotate(t_dlist **stack)
 {
-	t_list	*first;
+	t_dlist	*first;
 
 	if (stack == NULL)
 		return ;
@@ -25,13 +25,13 @@ t_list	**rotate(t_list **stack)
 	first = *stack;
 	*stack = (*stack)->next;
 	first->next = NULL;
-	ft_lstlast(*stack)->next = first;
+	ft_dlstlast(*stack)->next = first;
 	return (stack);
 }
 
-t_list	**ft_reverse_rotate(t_list **stack)
+t_dlist	**ft_reverse_rotate(t_dlist **stack)
 {
-	t_list	*second_last;
+	t_dlist	*second_last;
 
 	if (stack == NULL)
 		return ;

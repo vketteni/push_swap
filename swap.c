@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-void	ft_swap(t_list **stack)
+void	ft_swap(t_dlist **stack)
 {
-	t_list	*second;
+	t_dlist	*second;
 
 	if (stack == NULL)
 		return ;

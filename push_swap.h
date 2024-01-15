@@ -21,9 +21,9 @@
 # include "submodules/libft/libft.h"
 # include "submodules/ft_printf/ft_printf.h"
 
-void	ft_push(t_list **stack_a, t_list **stack_b);
-t_list	**rotate(t_list **stack);
-void	ft_swap(t_list **stack);
+void	ft_push(t_dlist **stack_a, t_dlist **stack_b);
+t_dlist	**rotate(t_dlist **stack);
+void	ft_swap(t_dlist **stack);
 
 void    ft_print_operations(int argc, char **argv, int sort_alg);
 

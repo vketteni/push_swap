@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-void	ft_push(t_list **stack_a, t_list **stack_b)
+void	ft_push(t_dlist **stack_a, t_dlist **stack_b)
 {
-	t_list	*tmp_ref;
+	t_dlist	*tmp_ref;
 
 	if (stack_b == NULL || stack_a == NULL)
 		return ;
