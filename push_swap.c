@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:54:00 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/14 20:37:12 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/15 09:13:04 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,18 @@ static void	ft_init_top_and_bottom(t_list **stack, int *top, int *bottom)
 
 char *ft_select_and_swap(t_list **stack_a, int distance)
 {
-	char *sort_operations;
-	while 
+	char 	*sort_operations;
+	t_list	*elem;
+
+	elem = (*stack_a);
+	while (distance > 0)
+		elem = elem->next;
+	while (distance < 0)
+		elem = elem->prev;
+
+	}
+
+
 
 	return ();
 }
