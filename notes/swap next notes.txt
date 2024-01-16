@@ -1,0 +1,29 @@
+swap next notes
+
+the unsorted node's pointers can be NULL
+- when unsorted is HEAD -> unsorted->next is NULL
+- when unsorted is TAIL -> unsorted->prev is NULL
+
+[EDGE CASES?]
+- node is head OR tail of stack
+	-> CAN'T DO (NULL)->next/prev 
+- node is adjacent to other node
+
+[REGULAR]
+- nodes swap next/prev pointers with each other
+
+(null)<-[Node1]->(p2)(p1)<-[Node2]->(p3)(p2)<-[Node3]->(null)
+
+	Node1	Node2	Node3
+pv	null	p1		p2
+nx	p2		p3		null
+
+	tmp1 = Node1
+	tmp2 = Node2
+
+	Node1->prev = tmp2->prev;
+	Node1->next = tmp2->next;
+
+	Node2->prev = tmp1->prev;
+	Node2->next = tmp1->next;
+
