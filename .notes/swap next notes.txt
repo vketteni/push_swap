@@ -1,5 +1,31 @@
 swap next notes
 
+[SORT STRATEGY]
+
+1 - - find sublist u
+		-
+	 !!	- -	> (1) check for potential swaps for sublist u to increase  
+	 	-			-
+		-			- - > calculate costs 
+		-
+		- - > (2) find longest connecting sublist
+					-			
+					- - > take distance
+							-
+							- -	> [if (distance) < costs]
+									-
+									- -	> push sublist w (inbetween elements) to stack B
+ 
+2 - - push sublist to B
+
+- - find new sublist that connects to START
+- - find new sublist that connects to ENDING
+	-
+	-	- >  shortest distance between lists
+				-
+				- - > 
+
+
 [SWAP]
 	tmp1 = Node1
 	tmp2 = Node2
@@ -12,8 +38,8 @@ swap next notes
 
 	
 
-	(null)	<-[N1(4)]->	(p2)
-	(p1)	<-[N2(7)]->	(p3)
+	(null)	<-[N1(4)]->	(p2) 	\n
+	(p1)	<-[N2(7)]->	(p3)	
 	(p2)	<-[N3(1)]->	(p4)
 	(p3)	<-[N4(3)]->	(p5)
 	(p4)	<-[N5(6)]->	(p6)
