@@ -1,0 +1,30 @@
+swap next notes
+
+[SWAP]
+	tmp1 = Node1
+	tmp2 = Node2
+
+	Node1->prev = tmp2->prev;
+	Node1->next = tmp2->next;
+
+	Node2->prev = tmp1->prev;
+	Node2->next = tmp1->next;
+
+	
+
+	(null)	<-[N1(4)]->	(p2)
+	(p1)	<-[N2(7)]->	(p3)
+	(p2)	<-[N3(1)]->	(p4)
+	(p3)	<-[N4(3)]->	(p5)
+	(p4)	<-[N5(6)]->	(p6)
+	(p5)	<-[N6(5)]->	(p7)
+	(p6)	<-[N7(2)]->	(null)
+
+
+
+
+
+	N1(4)	N2(7)	N3(1)	N4(0)
+pv	null	p1		p2		p3
+nx	p2		p3		p4		null
+
