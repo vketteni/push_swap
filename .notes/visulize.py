@@ -1,4 +1,4 @@
-import sys
+import sys, os, random
 
 def print_stacks(stack_a, stack_b):
     print("\tstack_1 \t\t  stack_2")
@@ -54,16 +54,19 @@ def rrb(stack):
 def rrr(stack_a, stack_b):
     rra(stack_a)
     rrb(stack_b)
-
+def init_stack(stack, numbers):
+    for i, element in enumerate(numbers):
+        previous_pointer = "0 " if i == 0 else f"p{i-1}"  # Use symbolic pointers
+        next_pointer = "0 " if i == len(numbers) - 1 else f"p{i+1}"
+        own_pointer = f"p{i}"
+        stack.append((element, previous_pointer, next_pointer, own_pointer))
+    return (stack)
 # Get numbers as command-line arguments
 numbers = [(int(arg)) for arg in sys.argv[1:]]
 # Initialize stacks
 stack_a = []
-for i, element in enumerate(numbers):
-    previous_pointer = "0 " if i == 0 else f"p{i-1}"  # Use symbolic pointers
-    next_pointer = "0 " if i == len(numbers) - 1 else f"p{i+1}"
-    own_pointer = f"p{i}"
-    stack_a.append((element, previous_pointer, next_pointer, own_pointer))
+init_stack(stack_a, numbers)
+
 stack_b = []       # Stack B starts empty
 
 print_stacks(stack_a, stack_b)  # Print initial stacks
@@ -98,13 +101,20 @@ while True:
             rrb(stack_b)
         elif instruction == "rrr":
             rrr(stack_a, stack_b)
-        elif instruction == "reset":
+        elif instruction == "re":
             stack_a = stack_a_copy.copy()
             stack_b = stack_b_copy.copy()
             total_instructions = ""
+        elif instruction == "cl":
+            os.system("clear")
+        elif instruction == "random":
+            stack_a, stack_b = [], []
+            stack_a = init_stack(stack_a, random.sample(range(1, 11), 5))
+            stack_a_copy = stack_a.copy()
+            stack_b_copy = stack_b.copy()
         else:
             print("Invalid instruction")
-        if (instruction != "reset"):
+        if (instruction != "re" and instruction != "cl"):
             total_instructions += instruction + " "
 
     print(f"[{total_instructions}] : {len(total_instructions.split())}")
