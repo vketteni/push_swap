@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:54:00 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/16 00:29:09 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/17 11:10:02 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,20 @@ char	*ft_selection_sort(t_dlist **stack_a, t_dlist **stack_b,
 	if (next == 0 || distance == 0)
 		return (0);
 	if (next->content < last_lowest->content)
+	{
 		ft_swap_next_lowest(last_lowest, next);
-	ft_swap_next_highest(last_highest, next);
-	return (ft_selection_sort_operations(last_lowest, last_highest, next,
-			distance));
+		return (ft_swap_lowest_operations(distance));
+	}
+	else
+		ft_swap_next_highest(last_highest, next);
+		return (ft_swap_highest_operations(distance));
+
+}
+
+int	ft_init_next_and_return_distance(t_dlist *dst, t_dlist *src, int distance)
+{
+	dst = src;
+	return (distance);
 }
 
 int	ft_next_distance(t_dlist *last_lowest, t_dlist *last_highest, t_dlist *next)
@@ -102,18 +112,14 @@ int	ft_next_distance(t_dlist *last_lowest, t_dlist *last_highest, t_dlist *next)
 	while (head != tail)
 	{
 		if (tail->content < last_lowest || tail->content > last_highest)
-		{
-			next = tail;
-			return (-distance);
-		}
+			return (ft_init_next_and_return_distance(next, tail, -distance));
 		if (head->content < last_lowest || head->content > last_highest)
-		{
-			next = head;
-			return (distance);
-		}
+			return (ft_init_next_and_return_distance(next, head, distance));
 		distance++;
 		tail = tail->prev;
 		head = head->prev;
 	}
 	return (0);
 }
+
+ft_selection_sort_operations()

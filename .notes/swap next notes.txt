@@ -54,3 +54,43 @@ swap next notes
 pv	null	p1		p2		p3
 nx	p2		p3		p4		null
 
+For: 	[6 7 0 3 8 9 5 1 2 4]
+
+[Ra: 14] [Pb: 3] [Pa: 3] [Sb: 2] : 22
+[ra ra pb pb ra ra sb pa ra pb ra ra sb pa ra ra pa ra ra ra ra ra]
+
+[Ra: 14] [Sa: 6] [Pb: 2] [Pa: 2] : 24
+[ra ra sa pb sa ra sa ra ra pa sa pb sa ra sa ra ra ra pa ra ra ra ra ra]
+
+[Rra: 11] [Ra: 5] [Pb: 4] [Pa: 4] [Sa: 1] [Sb: 1] : 26
+[rra rra rra pb pb rra sa pa pa rra rra rra rra pb pb ra ra sb pa ra ra ra pa rra rra rra]
+
+For:	[0 8 2 1 7 6 4 9 3 5]
+
+[Rra: 11] [Sa: 4] [Ra: 4] [Pb: 3] [Pa: 3] : 25
+[sa rra rra pb rra sa rra pa rra pb rra pb rra rra sa rra rra rra sa pa pa ra ra ra ra ]
+
+For:	[0 8 4 2 1 3 9 5 6 7 ]
+
+[Ra: 7] [Sa: 6] [Rra: 5] [Pb: 1] [Pa: 1] : 20
+[sa ra ra pb sa ra ra ra ra pa rra rra sa rra sa rra sa rra sa ra]
+
+[Ra: 11] [Sa: 6] [Pb: 1] [Pa: 1] : 19
+[sa ra ra pb sa ra ra ra pa ra sa ra sa ra sa ra sa ra ra]
+
+For:	[8 7 6 3 5 2 4 1 9 0]
+
+[Rra: 10] [Pb: 5] [Pa: 5] [Ra: 2] [Sa: 1] : 23
+[ra ra pb rra pb rra pb rra rra pa pa pa rra pb rra rra pb rra sa rra pa pa rra]
+
+[Sa: 19] [Rra: 18] [Ra: 11] : 48
+[sa ra sa rra sa rra rra sa ra sa ra sa ra sa rra rra rra rra sa rra rra rra sa ra sa ra sa ra sa rra rra sa ra sa rra rra rra sa ra sa ra sa rra rra sa ra sa rra]
+
+[Ra: 11] [Rra: 9] [Pb: 7] [Pa: 7] [Sa: 3] : 37
+[ra sa ra ra ra ra ra ra pb rra rra pb rra rra pb sa pa pa pa rra rra sa pb pb rra pa pa rra pb rra pb ra ra ra pa ra pa]
+
+For:	[9 2 0 8 5 4 7 3 1 6]
+
+[Rra: 9] [Sa: 6] [Pb: 3] [Pa: 3] [Ra: 2] : 23
+[sa ra ra sa rra sa rra rra rra pb sa pb rra pb rra sa rra rra sa pa pa pa rra]
+

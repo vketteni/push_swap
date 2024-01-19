@@ -1,21 +1,36 @@
 import sys, os, random
 
-def print_stacks(stack_a, stack_b):
-    print("\tstack_1 \t\t  stack_2")
+def print_stacks(stack_a, stack_b, show_pointers=False):
+    print()
+    print("\tstack_1\t\tstack_2")
     for i in range(max(len(stack_a), len(stack_b))):
-        print(f"({stack_a[i][1] if i < len(stack_a) else '0 '}) <-", end="")
+        print("\t", end="")
+        if (show_pointers):
+            print(f"({stack_a[i][1] if i < len(stack_a) else '0 '}) <-", end="")
         if i < len(stack_a):
-            print(f" {stack_a[i][3]}[ {stack_a[i][0]} ]", end="")
+            print(f"{stack_a[i][3]}[ {stack_a[i][0]} ]", end="")
         else:
             print("[   ]", end="")  # Pad for shorter stack
-        print(f"-> ({stack_a[i][2] if i < len(stack_a) else '0 '})\t", end="")
+        if (show_pointers):
+            print(f"-> ({stack_a[i][2] if i < len(stack_a) else '0 '})", end="")
+        print("\t\t", end="")
 
-        print(f"\t({stack_b[i][1] if i < len(stack_b) else '0 '}) <-", end="")
+        if (show_pointers):
+            print(f"\t({stack_b[i][1] if i < len(stack_b) else '0 '}) <-", end="")
         if i < len(stack_b):
-            print(f" {stack_b[i][3]}[ {stack_b[i][0]} ]", end="")
+            print(f"{stack_b[i][3]}[ {stack_b[i][0]} ]", end="")
         else:
             print("[   ]", end="")
-        print(f"-> ({stack_b[i][2] if i < len(stack_b) else '0 '})")
+        if (show_pointers):
+            print(f"-> ({stack_b[i][2] if i < len(stack_b) else '0 '})", end="")
+        print()
+    print()
+
+# print stack element values on a line
+def print_line(stack):
+    for element in stack:
+        print(element[0], end=" ")
+    print()
 
 def sa(stack):
     if len(stack) > 1:
@@ -36,7 +51,8 @@ def pb(stack_a, stack_b):
     pa(stack_b, stack_a)
 
 def ra(stack):
-    stack.append(stack.pop(0))
+    if stack:
+        stack.append(stack.pop(0))
 
 def rb(stack):
     ra(stack)
@@ -85,6 +101,8 @@ while True:
             sa(stack_a)
         elif instruction == "sb":
             sb(stack_b)
+        elif instruction == "ss":
+            ss(stack_a, stack_b)
         elif instruction == "pa":
             pa(stack_a, stack_b)
         elif instruction == "pb":
@@ -109,9 +127,11 @@ while True:
             os.system("clear")
         elif instruction == "random":
             stack_a, stack_b = [], []
-            stack_a = init_stack(stack_a, random.sample(range(1, 11), 5))
+            stack_a = init_stack(stack_a, random.sample(range(0, 10), 10))
             stack_a_copy = stack_a.copy()
             stack_b_copy = stack_b.copy()
+        elif instruction == "print":
+            print_line(stack_a)
         else:
             print("Invalid instruction")
         if (instruction != "re" and instruction != "cl"):
