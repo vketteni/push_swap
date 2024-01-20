@@ -1,5 +1,7 @@
 import sys, os, random
 
+RANDOM_SIZE = 30
+
 def print_stacks(stack_a, stack_b, show_pointers=False):
     print()
     print("\tstack_1\t\tstack_2")
@@ -127,7 +129,7 @@ while True:
             os.system("clear")
         elif instruction == "random":
             stack_a, stack_b = [], []
-            stack_a = init_stack(stack_a, random.sample(range(0, 10), 10))
+            stack_a = init_stack(stack_a, random.sample(range(0, RANDOM_SIZE), RANDOM_SIZE))
             stack_a_copy = stack_a.copy()
             stack_b_copy = stack_b.copy()
         elif instruction == "print":

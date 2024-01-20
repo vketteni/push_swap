@@ -6,43 +6,94 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:54:00 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/17 11:10:02 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/20 18:18:34 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// int main(void)
 int	main(int argc, char **argv)
 {
-	t_dlist	**stack_a;
-	t_dlist	**stack_b;
+	t_dlist	**stack;
 
 	if (argc < 2)
 		return (0);
-	ft_init_stack(stack_a, argc, argv);
-	ft_print_operations(stack_a, stack_b, argc - 1);
+	ft_init_stack(stack, argc, argv);
+	ft_print_operations(stack);
 	return (0);
 }
 
-void	ft_print_operations(t_dlist **stack_a, t_dlist **stack_b, int unordered)
+static int	ft_error()
 {
-	char	**sort_operations;
-	int		*last_lowest;
-	int		*last_highest;
+	ft_printf("Error!\n");
+	return (NULL);
+}
 
-	last_lowest = *stack_a;
-	last_highest = *stack_a;
-	while (unordered > 0)
-	{
-		if (1)
-			sort_operations = ft_selection_sort(stack_a, stack_b, last_highest,
-					last_lowest);
-		if (sort_operations == NULL)
-			return ((void)ft_printf("Error \n"));
-		ft_printf(sort_operations);
-		unordered--;
-	}
+void	ft_print_operations(t_dlist **stack)
+{
+	char	*sort_operations;
+
+	sort_operations = ft_sort(stack);
+	if (sort_operations == NULL || ft_check_ordered(stack) == 0)
+		return (ft_error());
+	ft_printf(sort_operations);
+}
+
+char	*ft_sort(t_dlist **stack)
+{
+	t_dlist	**second_stack;
+	char	**available_paths;
+	char	*best_path;
+
+	available_paths = ft_get_paths(stack);
+	if (available_paths == NULL);
+		return (NULL);
+
+
+	// double	**path_costs[8];
+	// 	int		i;
+
+	
+	// i = 1;
+	// sort_operations = available_paths[0];
+	// while (i < 8)
+	// {
+	// 	if (ft_strlen(sort_operations) > ft_strlen(available_paths[i]))
+	// 		sort_operations = available_paths[i];
+	// 	i++;
+	// }
+
+	// best_path = ft_best_path(stack, path_costs);
+	// if (best_path == NULL)
+	// 	return (NULL);
+	return (best_path);
+}
+
+char	**ft_get_paths(t_dlist **stack)
+{
+	char 	**available_paths;
+	t_dlist	*sorted_upper_bound;
+	t_dlist	*sorted_lower_bound;
+
+	available_paths = (char **)malloc(sizeof(char *) * CYCLE_PATH_PERMUTATIONS);
+	if (available_paths == NULL)
+		return (NULL);
+	sorted_upper_bound = ft_sorted_upper_bound(stack);
+	sorted_lower_bound = ft_sorted_lower_bound(stack);
+	available_paths[UPPER_BOUND_UPUP] = ft_get_upup_path(stack, sorted_upper_bound);
+	available_paths[UPPER_BOUND_UPDOWN] = 0;
+	available_paths[UPPER_BOUND_DOWNDOWN] = 0;
+	available_paths[UPPER_BOUND_DOWNUP] = 0;
+	available_paths[LOWER_BOUND_UPUP] = 0;
+	available_paths[LOWER_BOUND_DOWNUP] = 0;
+	available_paths[LOWER_BOUND_DOWNDOWN] = 0;
+	available_paths[LOWER_BOUND_UPDOWN] = 0;
+	return (available_paths);
+}
+
+ft_get_upup_path(t_dlist **stack, t_dlist *sorted_upper_bound)
+{
+	
 }
 
 void	ft_swap_next_lowest(t_dlist *last, t_dlist *next_lowest)
@@ -122,4 +173,4 @@ int	ft_next_distance(t_dlist *last_lowest, t_dlist *last_highest, t_dlist *next)
 	return (0);
 }
 
-ft_selection_sort_operations()
+// ft_selection_sort_operations()
