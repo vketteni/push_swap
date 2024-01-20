@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 14:59:48 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/20 17:30:55 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/20 20:43:03 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void delete(int *content)
             free(content);
 }
 
-static void	ft_populate_from_input(t_dlist **stack, int argc, char** argv)
+static void	ft_populate_stack_with_input(t_dlist **stack, int argc, char** argv)
 {
     int     i;
     t_dlist *new;
@@ -38,10 +38,10 @@ static void	ft_populate_from_input(t_dlist **stack, int argc, char** argv)
     }
 }
 
-static void	ft_initialize_upper_lower_bounds(t_dlist **stack)
+static void	ft_initialize_upper_lower_relations(t_dlist **stack)
 {
 	t_dlist	*current_position;
-	t_dlist	*lower_bound;
+	t_dlist	*next_lowest;
 	t_dlist	*other;
 
 	current_position = *stack;
@@ -51,21 +51,35 @@ static void	ft_initialize_upper_lower_bounds(t_dlist **stack)
 		while (other != NULL)
 		{
 			if (other->content < current_position->content)
-				lower_bound = other;
+				next_lowest = other;
 			other = other->next;
 		}
-		if (lower_bound)
+		if (next_lowest)
 		{
-			current_position->lower_bound = lower_bound->content;
-			lower_bound->upper_bound = current_position->content;
+			current_position->next_lowest = next_lowest;
+			next_lowest->next_highest = current_position;
 		}
 		current_position = current_position->next;
 	}
 }
 
+static void	ft_initialize_median(t_dlist **stack, int stack_length)
+{
+	t_dlist *median;
+	int		half;
 
+	half = stack_length / 2;
+	median = *stack;
+	while (median != NULL)
+		median = median->next_lowest;
+	while (half--)
+		median = median->next_highest; 
+	median->median = median;
+}
+	
 void    ft_init_stack(t_dlist **stack, int argc, char **argv)
 {
-    ft_populate_from_input(stack, argc, argv);
-	ft_initialize_upper_lower_bounds(stack);
+    ft_populate_stack_with_input(stack, argc, argv);
+	ft_initialize_upper_lower_relations(stack);
+	ft_initialize_median(stack, (argc - 1));
 }

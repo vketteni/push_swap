@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:54:00 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/20 18:18:34 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/20 20:48:02 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,31 +42,9 @@ void	ft_print_operations(t_dlist **stack)
 char	*ft_sort(t_dlist **stack)
 {
 	t_dlist	**second_stack;
-	char	**available_paths;
-	char	*best_path;
-
-	available_paths = ft_get_paths(stack);
-	if (available_paths == NULL);
-		return (NULL);
-
-
-	// double	**path_costs[8];
-	// 	int		i;
 
 	
-	// i = 1;
-	// sort_operations = available_paths[0];
-	// while (i < 8)
-	// {
-	// 	if (ft_strlen(sort_operations) > ft_strlen(available_paths[i]))
-	// 		sort_operations = available_paths[i];
-	// 	i++;
-	// }
-
-	// best_path = ft_best_path(stack, path_costs);
-	// if (best_path == NULL)
-	// 	return (NULL);
-	return (best_path);
+	// return ();
 }
 
 char	**ft_get_paths(t_dlist **stack)

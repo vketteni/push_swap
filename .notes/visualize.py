@@ -3,6 +3,8 @@ import sys, os, random
 RANDOM_SIZE = 30
 
 def print_stacks(stack_a, stack_b, show_pointers=False):
+    if (stack_a):
+        max_length = max(len(str(element[0])) for element in stack_a)
     print()
     print("\tstack_1\t\tstack_2")
     for i in range(max(len(stack_a), len(stack_b))):
@@ -10,7 +12,9 @@ def print_stacks(stack_a, stack_b, show_pointers=False):
         if (show_pointers):
             print(f"({stack_a[i][1] if i < len(stack_a) else '0 '}) <-", end="")
         if i < len(stack_a):
-            print(f"{stack_a[i][3]}[ {stack_a[i][0]} ]", end="")
+            print(f"{f'{stack_a[i][3]}[ {stack_a[i][0]} ]'.ljust(max_length + 6)}", end="")
+            
+            f"{stack_a[i][3]}[ {stack_a[i][0]} ]"
         else:
             print("[   ]", end="")  # Pad for shorter stack
         if (show_pointers):
