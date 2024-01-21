@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: vincentketteniss <vincentketteniss@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:54:00 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/20 20:48:02 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/21 05:29:59 by vincentkett      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,22 @@ void	ft_print_operations(t_dlist **stack)
 char	*ft_sort(t_dlist **stack)
 {
 	t_dlist	**second_stack;
+	t_dlist	*median = ft_get_median(stack);
+	t_dlist	*next;
+	char	*operations;
 
+	operations = "";
+	while (ft_contains_le_median(stack))
+	{
+		int	direction = ft_find_closest_le_median(median, stack);
+		if (direction > 0)
+			ft_strjoin(operations, ft_ra(stack));
+		else 
+			ft_strjoin(operations, ft_rra(stack));
+		ft_strjoin(operations, ft_pa(stack, second_stack));
+	}
 	
-	// return ();
+	return (operations);
 }
 
 char	**ft_get_paths(t_dlist **stack)
