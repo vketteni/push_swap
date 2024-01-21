@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vincentketteniss <vincentketteniss@stud    +#+  +:+       +#+        */
+/*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:54:00 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/21 05:29:59 by vincentkett      ###   ########.fr       */
+/*   Updated: 2024/01/21 20:24:03 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,145 +23,101 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-static int	ft_error()
+static int	ft_error(void)
 {
 	ft_printf("Error!\n");
 	return (NULL);
 }
 
-void	ft_print_operations(t_dlist **stack)
+void	ft_print_operations(t_dlist **stack_a)
 {
-	char	*sort_operations;
+	t_dlist	**stack_b;
 
-	sort_operations = ft_sort(stack);
-	if (sort_operations == NULL || ft_check_ordered(stack) == 0)
-		return (ft_error());
-	ft_printf(sort_operations);
+	ft_divide_upto_median(stack_a, stack_b);
+	ft_sort_simultaneously(stack_a, stack_b);
+	ft_merge(stack_a, stack_b);
 }
 
-char	*ft_sort(t_dlist **stack)
+void	ft_merge(t_dlist **stack_a, t_dlist **stack_b)
 {
-	t_dlist	**second_stack;
-	t_dlist	*median = ft_get_median(stack);
-	t_dlist	*next;
-	char	*operations;
+	ft_rotate_until_median(stack_a, stack_b);
+	while (*stack_b)
+		ft_pa(stack_a, stack_b);
+}
 
-	operations = "";
-	while (ft_contains_le_median(stack))
+void	ft_sort_simultaneously(t_dlist **stack_a, t_dlist **stack_b)
+{
+	int		operation_queue[2];
+	int		direction_to_next[2];
+	t_dlist	*last[2];
+
+	last[A] = *stack_a;
+	last[B] = *stack_b;
+	while (!ft_is_sorted(stack_a) && !ft_is_sorted(stack_b))
 	{
-		int	direction = ft_find_closest_le_median(median, stack);
-		if (direction > 0)
-			ft_strjoin(operations, ft_ra(stack));
-		else 
-			ft_strjoin(operations, ft_rra(stack));
-		ft_strjoin(operations, ft_pa(stack, second_stack));
+		operation_queue[A] = ft_next_operation(last[A], ft_distance_to_next(last, A));
+		operation_queue[B] = ft_next_operation(last[B], ft_distance_to_next(last, B));
+		ft_execute_queue(stack_a, stack_b, operation_queue, last);
 	}
-	
-	return (operations);
 }
 
-char	**ft_get_paths(t_dlist **stack)
+void	ft_execute_queue(t_dlist **stack_a, t_dlist **stack_b,
+		int *operation_queue, t_dlist **last)
 {
-	char 	**available_paths;
-	t_dlist	*sorted_upper_bound;
-	t_dlist	*sorted_lower_bound;
-
-	available_paths = (char **)malloc(sizeof(char *) * CYCLE_PATH_PERMUTATIONS);
-	if (available_paths == NULL)
-		return (NULL);
-	sorted_upper_bound = ft_sorted_upper_bound(stack);
-	sorted_lower_bound = ft_sorted_lower_bound(stack);
-	available_paths[UPPER_BOUND_UPUP] = ft_get_upup_path(stack, sorted_upper_bound);
-	available_paths[UPPER_BOUND_UPDOWN] = 0;
-	available_paths[UPPER_BOUND_DOWNDOWN] = 0;
-	available_paths[UPPER_BOUND_DOWNUP] = 0;
-	available_paths[LOWER_BOUND_UPUP] = 0;
-	available_paths[LOWER_BOUND_DOWNUP] = 0;
-	available_paths[LOWER_BOUND_DOWNDOWN] = 0;
-	available_paths[LOWER_BOUND_UPDOWN] = 0;
-	return (available_paths);
-}
-
-ft_get_upup_path(t_dlist **stack, t_dlist *sorted_upper_bound)
-{
-	
-}
-
-void	ft_swap_next_lowest(t_dlist *last, t_dlist *next_lowest)
-{
-	t_dlist	*before_lowest;
-	t_dlist	*after_lowest;
-
-	before_lowest = next_lowest->prev;
-	before_lowest->next = next_lowest->next;
-	after_lowest = next_lowest->next;
-	after_lowest->prev = next_lowest->prev;
-	last->prev = next_lowest;
-	next_lowest->next = last;
-	next_lowest->prev = NULL;
-}
-
-void	ft_swap_next_highest(t_dlist *last, t_dlist *next_highest)
-{
-	t_dlist	*tmp1;
-	t_dlist	*tmp2;
-
-	if (last->next == NULL)
-		return ;
-	tmp1 = last->next;
-	tmp2 = next_highest;
-	next_highest->next = tmp1->next;
-	next_highest->prev = tmp1->prev;
-	(last->next)->next = tmp2->next;
-	(last->next)->prev = tmp2->prev;
-}
-
-char	*ft_selection_sort(t_dlist **stack_a, t_dlist **stack_b,
-		t_dlist *last_highest, t_dlist *last_lowest)
-{
-	int		distance;
-	t_dlist	*next;
-
-	distance = ft_next_distance(last_lowest, last_highest, next);
-	if (next == 0 || distance == 0)
-		return (0);
-	if (next->content < last_lowest->content)
-	{
-		ft_swap_next_lowest(last_lowest, next);
-		return (ft_swap_lowest_operations(distance));
-	}
+	if ((operation_queue[A] == operation_queue[B]) && operation_queue[A] == ROTATE)
+		ft_rr(stack_a, stack_b);
+	if ((operation_queue[A] == operation_queue[B]) && operation_queue[A] == REVERSE_ROTATE)
+		ft_rrr(stack_a);
+	if ((operation_queue[A] == operation_queue[B]) && operation_queue[A] == SWAP)
+		ft_ss(stack_a, stack_b);
+	if (ft_absolute(ft_distance_to_next(last, A)) < ft_absolute(ft_distance_to_next(last, B)))
+		ft_execute(stack_a, operation_queue[A], A);
 	else
-		ft_swap_next_highest(last_highest, next);
-		return (ft_swap_highest_operations(distance));
-
+		ft_execute(stack_a, operation_queue[B], B);
+	ft_update_last(last);
 }
 
-int	ft_init_next_and_return_distance(t_dlist *dst, t_dlist *src, int distance)
+void	ft_execute(t_dlist **stack, int operation, int stack_id)
 {
-	dst = src;
-	return (distance);
+		if (operation == ROTATE && stack_id == A)
+			ft_ra(stack);
+		if (operation == ROTATE && stack_id == B)
+			ft_rb(stack);
+		if (operation == REVERSE_ROTATE && stack_id == A)
+			ft_rra(stack);
+		if (operation == REVERSE_ROTATE && stack_id == B)
+			ft_rrb(stack);
+		if (operation == SWAP && stack_id == A)
+			ft_sa(stack);
+		if (operation == SWAP && stack_id == B)
+			ft_sb(stack);
 }
 
-int	ft_next_distance(t_dlist *last_lowest, t_dlist *last_highest, t_dlist *next)
+int	ft_next_operation(t_dlist *last, int distance_to_next)
 {
-	t_dlist	*tail;
-	t_dlist	*head;
-	int		distance;
+	if (distance_to_next > 1)
+		return (ROTATE);
+	else if (distance_to_next < -1 || (distance_to_next == 0
+			&& ft_distance(ft_dlstfirst(last[A]), last[A]) < -1))
+		return (REVERSE_ROTATE);
+	else if (distance_to_next == 1)
+		return (SWAP);
+}
 
-	head = last_highest->next;
-	tail = ft_dlstlast(last_highest);
-	distance = 1;
-	while (head != tail)
+void	ft_divide_upto_median(t_dlist **stack_a, t_dlist **stack_b)
+{
+	int		direction;
+	t_dlist	*median;
+
+	median = ft_get_median(stack_a);
+	while (ft_contains_le_median(stack_a))
 	{
-		if (tail->content < last_lowest || tail->content > last_highest)
-			return (ft_init_next_and_return_distance(next, tail, -distance));
-		if (head->content < last_lowest || head->content > last_highest)
-			return (ft_init_next_and_return_distance(next, head, distance));
-		distance++;
-		tail = tail->prev;
-		head = head->prev;
+		direction = ft_find_closest_le_median(median, stack_a);
+		if (direction > 0)
+			ft_ra(stack_a);
+		else if (direction < 0)
+			ft_rra(stack_a);
+		else
+			ft_pa(stack_a, stack_b);
 	}
-	return (0);
 }
-
-// ft_selection_sort_operations()

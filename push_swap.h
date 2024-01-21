@@ -6,23 +6,23 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/20 18:09:02 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/21 19:58:26 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP
 # define PUSH_SWAP
 
-# define UPPER_BOUND_UPUP 0
-# define UPPER_BOUND_UPDOWN 1
-# define UPPER_BOUND_DOWNDOWN 2
-# define UPPER_BOUND_DOWNUP 3
-# define LOWER_BOUND_UPUP 4
-# define LOWER_BOUND_UPDOWN 5
-# define LOWER_BOUND_DOWNDOWN 6
-# define LOWER_BOUND_DOWNUP 7
+# define SORTING_STEPS 3
 
-# define CYCLE_PATH_PERMUTATIONS 8
+# define A 0
+# define B 1
+
+# define PUSH 0
+# define ROTATE 1
+# define REVERSE_ROTATE 2
+# define SWAP 3
+
 
 
 # include <stdlib.h>
