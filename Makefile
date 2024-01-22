@@ -1,9 +1,22 @@
 NAME = push_swap
-SRCS = push_swap.c
+SRCS = push_swap.c \
+	push.c \
+	reverse_rotate.c \
+	rotate.c \
+	swap.c \
+	ft_initialize_stack.c \
+	ft_sort_and_print.c \
+	ft_merge.c \
+	ft_sort_simultaneously.c \
+	ft_divide_upto_median.c \
+	ft_next_operation.c \
+	ft_execute_queue.c \
+	distances.c \
+
 OBJS = ${SRCS:.c=.o}
 CC = cc
 FLAGS = -Wall -Wextra -Werror 
-
+vpath %.c sorting instructions utils
 %.o: %.c 
 	${CC} ${FLAGS} -Isubmodules/libft -Isubmodules/ft_printf -c $? -o $@
 

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_stack.c                                    :+:      :+:    :+:   */
+/*   ft_initialize_stack.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-static void delete(int *content)
+static void delete(void *content)
 {
     if (content)
             free(content);
@@ -77,7 +77,7 @@ static void	ft_initialize_median(t_dlist **stack, int stack_length)
 	median->median = median;
 }
 	
-void    ft_init_stack(t_dlist **stack, int argc, char **argv)
+void    ft_initialize_stack(t_dlist **stack, int argc, char **argv)
 {
     ft_populate_stack_with_input(stack, argc, argv);
 	ft_initialize_upper_lower_relations(stack);
