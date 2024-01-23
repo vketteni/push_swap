@@ -14,9 +14,11 @@
 
 void	ft_sort_and_print(t_dlist **stack_a)
 {
+	t_dlist	*null_ptr;
 	t_dlist	**stack_b;
 
-	stack_b = NULL;
+	null_ptr = NULL;
+	stack_b = &null_ptr;
 	ft_divide_upto_median(stack_a, stack_b);
 	ft_sort_simultaneously(stack_a, stack_b);
 	ft_merge(stack_a, stack_b);

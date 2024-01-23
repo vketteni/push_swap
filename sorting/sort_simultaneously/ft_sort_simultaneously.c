@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:57:25 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/23 03:06:13 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:29:47 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,16 @@ void	ft_sort_simultaneously(t_dlist **stack_a, t_dlist **stack_b)
 
 	last[A] = *stack_a;
 	last[B] = *stack_b;
-	while (!ft_is_sorted(stack_a) && !ft_is_sorted(stack_b))
+	while (!ft_is_sorted(stack_a) || !ft_is_sorted(stack_b))
 	{
 		operation_queue[A] = next_operation(ft_distance_to_closest_adjacent_value(*stack_a,
-					last[A]->next_highest, last[A]->next_lowest),
+					ft_get_next_higher_in_stack(stack_a, *stack_a), ft_get_next_lower_in_stack(stack_a, *stack_a)),
 				ft_distance_to_closest_adjacent_value(last[A],
-					last[A]->next_highest, last[A]->next_lowest));
+					ft_get_next_higher_in_stack(stack_a, last[A]), ft_get_next_lower_in_stack(stack_a, last[A])));
 		operation_queue[B] = next_operation(ft_distance_to_closest_adjacent_value(*stack_a,
-					last[A]->next_highest, last[A]->next_lowest),
-				ft_distance_to_closest_adjacent_value(last[A],
-					last[A]->next_highest, last[A]->next_lowest));
+					ft_get_next_higher_in_stack(stack_b, *stack_b), ft_get_next_lower_in_stack(stack_b, *stack_b)),
+				ft_distance_to_closest_adjacent_value(last[B],
+					ft_get_next_higher_in_stack(stack_b, last[B]), ft_get_next_lower_in_stack(stack_b, last[B])));
 		ft_execute_queue(stack_a, stack_b, operation_queue, last);
 		update_last(last);
 	}

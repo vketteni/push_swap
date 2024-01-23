@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 22:15:55 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/22 17:28:01 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:58:44 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,21 @@ static void	rotate(t_dlist **stack)
 	(*stack)->prev =  NULL;
 }
 
-char	*ft_ra(t_dlist **stack_a)
+void	ft_ra(t_dlist **stack_a)
 {
 	rotate(stack_a);
-	return ("ra");
+	ft_printf("ra ");
 }
 
-char	*ft_rb(t_dlist **stack_b)
+void	ft_rb(t_dlist **stack_b)
 {
 	rotate(stack_b);
-	return ("rb");
+	ft_printf("rb ");
 }
 
-char	*ft_rr(t_dlist **stack_a, t_dlist **stack_b)
+void	ft_rr(t_dlist **stack_a, t_dlist **stack_b)
 {
 	rotate(stack_a);
 	rotate(stack_b);
-	return ("rr");
+	ft_printf("rr ");
 }

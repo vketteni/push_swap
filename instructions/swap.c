@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 21:27:14 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/22 14:34:49 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:59:12 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,21 @@ static void	swap(t_dlist **stack)
 	stack = &second;
 }
 
-char	*ft_sa(t_dlist **stack_a)
+void	ft_sa(t_dlist **stack_a)
 {
 	swap(stack_a);
-	return ("sa");
+	ft_printf("sa ");
 }
 
-char	*ft_sb(t_dlist **stack_b)
+void	ft_sb(t_dlist **stack_b)
 {
 	swap(stack_b);
-	return ("sb");
+	ft_printf("sb ");
 }
 
-char	*ft_ss(t_dlist **stack_a, t_dlist **stack_b)
+void	ft_ss(t_dlist **stack_a, t_dlist **stack_b)
 {
 	swap(stack_a);
 	swap(stack_b);
-	return ("ss");
+	ft_printf("ss ");
 }

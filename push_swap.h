@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/23 03:19:16 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:22:15 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,17 @@
 /*
  *	INSTRUCTIONS
  */
-char			*ft_pa(t_dlist **stack_a, t_dlist **stack_b);
-char			*ft_pb(t_dlist **stack_b, t_dlist **stack_a);
-char			*ft_rb(t_dlist **stack_b);
-char			*ft_ra(t_dlist **stack_a);
-char			*ft_rr(t_dlist **stack_a, t_dlist **stack_b);
-char			*ft_rra(t_dlist **stack_a);
-char			*ft_rrb(t_dlist **stack_b);
-char			*ft_rrr(t_dlist **stack_a, t_dlist **stack_b);
-char			*ft_sa(t_dlist **stack_a);
-char			*ft_sb(t_dlist **stack_b);
-char			*ft_ss(t_dlist **stack_a, t_dlist **stack_b);
+void			ft_pa(t_dlist **stack_a, t_dlist **stack_b);
+void			ft_pb(t_dlist **stack_b, t_dlist **stack_a);
+void			ft_rb(t_dlist **stack_b);
+void			ft_ra(t_dlist **stack_a);
+void			ft_rr(t_dlist **stack_a, t_dlist **stack_b);
+void			ft_rra(t_dlist **stack_a);
+void			ft_rrb(t_dlist **stack_b);
+void			ft_rrr(t_dlist **stack_a, t_dlist **stack_b);
+void			ft_sa(t_dlist **stack_a);
+void			ft_sb(t_dlist **stack_b);
+void			ft_ss(t_dlist **stack_a, t_dlist **stack_b);
 
 /*
  *	SORTING
@@ -91,6 +91,8 @@ int				ft_distance_by_rotation(t_dlist *start, t_dlist *end);
 int				ft_distance_by_reverse_rotation(t_dlist *start, t_dlist *end);
 t_dlist			*ft_highest_in_stack(t_dlist **stack);
 t_dlist			*ft_lowest_in_stack(t_dlist **stack);
+t_dlist			*ft_get_next_higher_in_stack(t_dlist **stack, t_dlist *compare);
+t_dlist			*ft_get_next_lower_in_stack(t_dlist **stack, t_dlist *compare);
 int				ft_is_sorted(t_dlist **stack);
 unsigned int	ft_absolute(int d);
 

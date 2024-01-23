@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:58:42 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/23 02:37:30 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:54:22 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	contains_lt_median(t_dlist **stack, t_dlist	*median)
 {
 	while (*stack != NULL)
 	{
-		if ((*stack)->content < median->content)
+		if (*(int *)((*stack)->content) < *(int *)(median->content))
 			return (1);
 		stack = &((*stack)->next);
 	}
@@ -42,6 +42,6 @@ void	ft_divide_upto_median(t_dlist **stack_a, t_dlist **stack_b)
 		else if (distance < 0)
 			ft_rra(stack_a);
 		else
-			ft_pa(stack_a, stack_b);
+			ft_pb(stack_a, stack_b);
 	}
 }
