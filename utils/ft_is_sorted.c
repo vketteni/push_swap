@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_divide_upto_median.c                            :+:      :+:    :+:   */
+/*   ft_is_sorted.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/22 11:58:42 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/22 11:59:15 by vketteni         ###   ########.fr       */
+/*   Created: 2024/01/23 02:48:10 by vketteni          #+#    #+#             */
+/*   Updated: 2024/01/23 02:57:44 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ft_divide_upto_median(t_dlist **stack_a, t_dlist **stack_b)
+int ft_is_sorted(t_dlist **stack)
 {
-	int		direction;
-	t_dlist	*median;
-
-	median = ft_get_median(stack_a);
-	while (ft_contains_le_median(stack_a))
-	{
-		direction = ft_find_closest_le_median(median, stack_a);
-		if (direction > 0)
-			ft_ra(stack_a);
-		else if (direction < 0)
-			ft_rra(stack_a);
-		else
-			ft_pa(stack_a, stack_b);
-	}
+    while (*stack != 0)
+    {
+        if ((*stack)->next != (*stack)->next_lowest)
+            return(0);
+        stack = &((*stack)->next);
+    }
+    return (1);
 }

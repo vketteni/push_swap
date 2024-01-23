@@ -6,13 +6,13 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:33:27 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/22 19:24:31 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/23 03:09:44 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../../push_swap.h"
 
-static void	execute_single_operations(t_dlist **stack, int operation,
+static void	execute_solo_operations(t_dlist **stack, int operation,
 		int stack_id)
 {
 	if (operation == ROTATE && stack_id == A)
@@ -49,13 +49,13 @@ void	ft_execute_queue(t_dlist **stack_a, t_dlist **stack_b,
 	int	distance_a;
 	int	distance_b;
 
-	distance_a = ft_distance_to_closest_adjacent_value(last, last[A]->next_highest,
-			last[A]->next_lowest);
-	distance_b = ft_distance_to_closest_adjacent_value(last, last[A]->next_highest,
-			last[A]->next_lowest);
+	distance_a = ft_distance_to_closest_adjacent_value(last[A],
+			last[A]->next_highest, last[A]->next_lowest);
+	distance_b = ft_distance_to_closest_adjacent_value(last[A],
+			last[A]->next_highest, last[A]->next_lowest);
 	execute_simultanous_operations(stack_a, stack_b, operation_queue);
-	if (ft_absolute(distance_a) < ft_absolute(distance_b)) 
-		execute_single_operations(stack_a, operation_queue[A], A);
-	else 
-		execute_single_operations(stack_a, operation_queue[B], B);
+	if (ft_absolute(distance_a) < ft_absolute(distance_b))
+		execute_solo_operations(stack_a, operation_queue[A], A);
+	else
+		execute_solo_operations(stack_a, operation_queue[B], B);
 }

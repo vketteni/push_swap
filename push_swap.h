@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/22 21:34:13 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/23 03:19:16 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define SORTING_STEPS 3
 
-# define DISTANCES_MERGE 8
+# define DISTANCES_MERGE 6
 # define ROTATE_A 0
 # define ROTATE_B 1
 # define REVERSE_ROTATE_A 2
@@ -43,38 +43,55 @@
 /*
  *	INSTRUCTIONS
  */
-char	*ft_pa(t_dlist **stack_a, t_dlist **stack_b);
-char	*ft_pb(t_dlist **stack_b, t_dlist **stack_a);
-char	*ft_rb(t_dlist **stack_b);
-char	*ft_ra(t_dlist **stack_a);
-char	*ft_rr(t_dlist **stack_a, t_dlist **stack_b);
-char	*ft_rra(t_dlist **stack_a);
-char	*ft_rrb(t_dlist **stack_b);
-char	*ft_rrr(t_dlist **stack_a, t_dlist **stack_b);
-char	*ft_sa(t_dlist **stack_a);
-char	*ft_sb(t_dlist **stack_b);
-char	*ft_ss(t_dlist **stack_a, t_dlist **stack_b);
+char			*ft_pa(t_dlist **stack_a, t_dlist **stack_b);
+char			*ft_pb(t_dlist **stack_b, t_dlist **stack_a);
+char			*ft_rb(t_dlist **stack_b);
+char			*ft_ra(t_dlist **stack_a);
+char			*ft_rr(t_dlist **stack_a, t_dlist **stack_b);
+char			*ft_rra(t_dlist **stack_a);
+char			*ft_rrb(t_dlist **stack_b);
+char			*ft_rrr(t_dlist **stack_a, t_dlist **stack_b);
+char			*ft_sa(t_dlist **stack_a);
+char			*ft_sb(t_dlist **stack_b);
+char			*ft_ss(t_dlist **stack_a, t_dlist **stack_b);
 
 /*
-*	SORTING
-*/
-void	ft_initialize_stack(t_dlist **stack, int argc, char **argv);
-void	ft_divide_upto_median(t_dlist **stack_a, t_dlist **stack_b);
-void	ft_merge(t_dlist **stack_a, t_dlist **stack_b);
-void	ft_sort_and_print(t_dlist **stack_a);
-void	ft_sort_simultaneously(t_dlist **stack_a, t_dlist **stack_b);
-void	ft_execute_queue(t_dlist **stack_a, t_dlist **stack_b,
-		int *operation_queue, t_dlist **last);
-/*
-*   UTILS
-*/
+ *	SORTING
+ */
+void			ft_initialize_stack(t_dlist **stack, int argc, char **argv);
+void			ft_divide_upto_median(t_dlist **stack_a, t_dlist **stack_b);
+void			ft_merge(t_dlist **stack_a, t_dlist **stack_b);
+void			ft_sort_and_print(t_dlist **stack_a);
+void			ft_sort_simultaneously(t_dlist **stack_a, t_dlist **stack_b);
+void			ft_execute_queue(t_dlist **stack_a, t_dlist **stack_b,
+					int *operation_queue, t_dlist **last);
+t_dlist			*ft_get_median(t_dlist **stack);
 
-int	ft_distance_to_closest_adjacent_value(t_dlist *start, t_dlist *next_highest,
-		t_dlist *next_lowest);
-int ft_distance_shortest(t_dlist *start, t_dlist *end);
-int ft_distance_by_rotation(t_dlist *start, t_dlist *end);
-int ft_distance_by_reverse_rotation(t_dlist *start, t_dlist *end);
-t_dlist *ft_highest_in_stack(t_dlist **stack);
-t_dlist *ft_lowest_in_stack(t_dlist **stack);
+/*
+ *	MERGES
+ */
+void			ft_execute_rrr_merge(t_dlist **stack_a, t_dlist **stack_b,
+					int *distances);
+void			ft_execute_rr_merge(t_dlist **stack_a, t_dlist **stack_b,
+					int *distances);
+void			ft_execute_rra_rb_merge(t_dlist **stack_a, t_dlist **stack_b,
+					int *distances);
+void			ft_execute_ra_rrb_merge(t_dlist **stack_a, t_dlist **stack_b,
+					int *distances);
+
+/*
+ *   UTILS
+ */
+int				ft_distance_to_closest_lt_median(t_dlist *start,
+					t_dlist *median);
+int				ft_distance_to_closest_adjacent_value(t_dlist *start,
+					t_dlist *next_highest, t_dlist *next_lowest);
+int				ft_distance_shortest(t_dlist *start, t_dlist *end);
+int				ft_distance_by_rotation(t_dlist *start, t_dlist *end);
+int				ft_distance_by_reverse_rotation(t_dlist *start, t_dlist *end);
+t_dlist			*ft_highest_in_stack(t_dlist **stack);
+t_dlist			*ft_lowest_in_stack(t_dlist **stack);
+int				ft_is_sorted(t_dlist **stack);
+unsigned int	ft_absolute(int d);
 
 #endif

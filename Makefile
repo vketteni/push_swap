@@ -4,19 +4,27 @@ SRCS = push_swap.c \
 	reverse_rotate.c \
 	rotate.c \
 	swap.c \
+	ft_divide_upto_median.c \
+	ft_get_median.c \
 	ft_initialize_stack.c \
 	ft_sort_and_print.c \
 	ft_merge.c \
+	ft_execute_rr_merge.c \
+	ft_execute_ra_rrb_merge.c \
+	ft_execute_rrr_merge.c \
+	ft_execute_rra_rb_merge.c \
 	ft_sort_simultaneously.c \
-	ft_divide_upto_median.c \
-	ft_next_operation.c \
 	ft_execute_queue.c \
+	highest_lowest.c \
 	distances.c \
+	ft_is_sorted.c \
+	ft_absolute.c \
+
 
 OBJS = ${SRCS:.c=.o}
 CC = cc
 FLAGS = -Wall -Wextra -Werror 
-vpath %.c sorting instructions utils
+vpath %.c sorting sorting/merge sorting/sort_simultaneously sorting/divide_upto_median instructions utils
 %.o: %.c 
 	${CC} ${FLAGS} -Isubmodules/libft -Isubmodules/ft_printf -c $? -o $@
 
