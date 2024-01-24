@@ -6,29 +6,33 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:57:25 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/23 18:29:47 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/24 06:57:06 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-static int	next_operation(int distance_head_to_next, int distance_last_to_next)
+static int	next_operation(t_dlist **stack, t_dlist *last, t_dlist *next)
 {
-	if (distance_head_to_next > 1)
+	int		distance_head_next;
+	int		distance_last_next;
+
+	distance_head_next = ft_distance(*stack, next);
+	distance_last_next = ft_distance(last, next);
+	if (distance_head_next > 1)
 		return (ROTATE);
-	else if (distance_head_to_next < -1 || (distance_head_to_next == 0
-			&& distance_last_to_next < -1))
+	else if (distance_head_next < -1 || (distance_head_next == 0
+			&& distance_last_next < -1))
 		return (REVERSE_ROTATE);
-	else if (distance_head_to_next == 1)
+	else if (distance_head_next == 1)
 		return (SWAP);
 	else
 		return (-1);
 }
 
-static void	update_last(t_dlist **last)
+static void	update_last_next(t_dlist **stack_a, t_dlist stack_b, t_dlist **last, t_dlist **next)
 {
-	if (ft_distance_to_closest_adjacent_value(last[A], last[A]->next_highest,
-			last[A]->next_lowest) == 1)
+	if (ft_distance(last[A], next[A]) == 1)
 		last[A] = last[A]->next_highest;
 	if (ft_distance_to_closest_adjacent_value(last[A], last[A]->next_highest,
 			last[A]->next_lowest) == -1)
@@ -41,24 +45,38 @@ static void	update_last(t_dlist **last)
 		last[B] = last[B]->next_highest;
 }
 
+t_dlist	*get_next(t_dlist **stack, t_dlist *last)
+{
+	int		distance_to_lower;
+	int		distance_to_higher;
+	t_dlist	*next_lower;
+	t_dlist	*next_higher;
+
+	next_higher = ft_get_next_higher(stack, *stack);
+	next_lower = ft_get_next_lower(stack, *stack);
+	distance_to_higher = ft_distance(*stack, next_higher);
+	distance_to_lower = ft_distance(*stack, next_lower);
+	if (distance_to_lower < distance_to_higher)
+		return (next_lower);
+	else
+		return (next_higher);
+}
+
 void	ft_sort_simultaneously(t_dlist **stack_a, t_dlist **stack_b)
 {
 	int		operation_queue[2];
 	t_dlist	*last[2];
+	t_dlist	*next[2];
 
 	last[A] = *stack_a;
 	last[B] = *stack_b;
+	next[A] = get_next(stack_a);
+	next[B] = get_next(stack_b);
 	while (!ft_is_sorted(stack_a) || !ft_is_sorted(stack_b))
 	{
-		operation_queue[A] = next_operation(ft_distance_to_closest_adjacent_value(*stack_a,
-					ft_get_next_higher_in_stack(stack_a, *stack_a), ft_get_next_lower_in_stack(stack_a, *stack_a)),
-				ft_distance_to_closest_adjacent_value(last[A],
-					ft_get_next_higher_in_stack(stack_a, last[A]), ft_get_next_lower_in_stack(stack_a, last[A])));
-		operation_queue[B] = next_operation(ft_distance_to_closest_adjacent_value(*stack_a,
-					ft_get_next_higher_in_stack(stack_b, *stack_b), ft_get_next_lower_in_stack(stack_b, *stack_b)),
-				ft_distance_to_closest_adjacent_value(last[B],
-					ft_get_next_higher_in_stack(stack_b, last[B]), ft_get_next_lower_in_stack(stack_b, last[B])));
+		operation_queue[A] = next_operation(stack_a, last[A], next[A]);
+		operation_queue[B] = next_operation(stack_b, last[B], next[A]);
 		ft_execute_queue(stack_a, stack_b, operation_queue, last);
-		update_last(last);
+		update_last_next(stack_a, stack_b, last, next);
 	}
 }

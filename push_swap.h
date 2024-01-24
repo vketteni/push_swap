@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/23 18:22:15 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/24 06:41:04 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,13 @@ int				ft_distance_to_closest_lt_median(t_dlist *start,
 					t_dlist *median);
 int				ft_distance_to_closest_adjacent_value(t_dlist *start,
 					t_dlist *next_highest, t_dlist *next_lowest);
-int				ft_distance_shortest(t_dlist *start, t_dlist *end);
+int				ft_distance(t_dlist *start, t_dlist *end);
 int				ft_distance_by_rotation(t_dlist *start, t_dlist *end);
 int				ft_distance_by_reverse_rotation(t_dlist *start, t_dlist *end);
 t_dlist			*ft_highest_in_stack(t_dlist **stack);
 t_dlist			*ft_lowest_in_stack(t_dlist **stack);
-t_dlist			*ft_get_next_higher_in_stack(t_dlist **stack, t_dlist *compare);
-t_dlist			*ft_get_next_lower_in_stack(t_dlist **stack, t_dlist *compare);
+t_dlist			*ft_get_next_higher(t_dlist **stack, t_dlist *last);
+t_dlist			*ft_get_next_lower(t_dlist **stack, t_dlist *last);
 int				ft_is_sorted(t_dlist **stack);
 unsigned int	ft_absolute(int d);
 

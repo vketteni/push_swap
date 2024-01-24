@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 19:17:22 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/23 18:31:27 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/24 06:40:29 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,36 +43,38 @@ t_dlist *ft_lowest_in_stack(t_dlist **stack)
     return (lowest);
 }
 
-t_dlist *ft_get_next_higher_in_stack(t_dlist **stack, t_dlist *compare)
+t_dlist *ft_get_next_higher(t_dlist **stack, t_dlist *last)
 {
     t_dlist *higher;
 
     while (*stack != NULL)
     {
-        if ((*(int *)(*stack)->content) > (*(int *)(compare)->content)) 
+        if ((*(int *)(*stack)->content) > (*(int *)(last)->content)) 
         {
             if (!higher)
                 higher = *stack;
             else if ((*(int *)(*stack)->content) < (*(int *)((higher))->content))
                 higher = *stack;
         }
+        stack = &((*stack)->next);
     }
     return (higher);
 }
 
-t_dlist *ft_get_next_lower_in_stack(t_dlist **stack, t_dlist *compare)
+t_dlist *ft_get_next_lower(t_dlist **stack, t_dlist *last)
 {
     t_dlist *lower;
 
     while (*stack != NULL)
     {
-        if ((*(int *)(*stack)->content) < (*(int *)(compare)->content)) 
+        if ((*(int *)(*stack)->content) < (*(int *)(last)->content)) 
         {
             if (!lower)
                 lower = *stack;
             else if ((*(int *)(*stack)->content) > (*(int *)((lower))->content))
                 lower = *stack;
         }
+        stack = &((*stack)->next);
     }
     return (lower);
 }
