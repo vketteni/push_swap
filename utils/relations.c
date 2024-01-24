@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 19:17:22 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/24 06:40:29 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/24 10:55:24 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,11 @@ t_dlist *ft_lowest_in_stack(t_dlist **stack)
     return (lowest);
 }
 
-t_dlist *ft_get_next_higher(t_dlist **stack, t_dlist *last)
+t_dlist *ft_next_higher(t_dlist **stack, t_dlist *last)
 {
     t_dlist *higher;
 
+    higher = NULL;
     while (*stack != NULL)
     {
         if ((*(int *)(*stack)->content) > (*(int *)(last)->content)) 
@@ -61,10 +62,11 @@ t_dlist *ft_get_next_higher(t_dlist **stack, t_dlist *last)
     return (higher);
 }
 
-t_dlist *ft_get_next_lower(t_dlist **stack, t_dlist *last)
+t_dlist *ft_next_lower(t_dlist **stack, t_dlist *last)
 {
     t_dlist *lower;
 
+    lower = NULL;
     while (*stack != NULL)
     {
         if ((*(int *)(*stack)->content) < (*(int *)(last)->content)) 

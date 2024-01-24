@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/24 06:41:04 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/24 18:46:04 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,12 @@ void			ft_initialize_stack(t_dlist **stack, int argc, char **argv);
 void			ft_divide_upto_median(t_dlist **stack_a, t_dlist **stack_b);
 void			ft_merge(t_dlist **stack_a, t_dlist **stack_b);
 void			ft_sort_and_print(t_dlist **stack_a);
-void			ft_sort_simultaneously(t_dlist **stack_a, t_dlist **stack_b);
-void			ft_execute_queue(t_dlist **stack_a, t_dlist **stack_b,
-					int *operation_queue, t_dlist **last);
+void			ft_sort_simultaneous(t_dlist **stack_a, t_dlist **stack_b);
+void			ft_execute_simultanous(t_dlist ***stacks, int *operations);
+void			ft_execute_stacks(t_dlist ***stacks, int *operation_queue,
+					t_dlist **last, t_dlist **next);
 t_dlist			*ft_get_median(t_dlist **stack);
+t_dlist			*ft_get_next(t_dlist **stack, t_dlist *last);
 
 /*
  *	MERGES
@@ -91,9 +93,10 @@ int				ft_distance_by_rotation(t_dlist *start, t_dlist *end);
 int				ft_distance_by_reverse_rotation(t_dlist *start, t_dlist *end);
 t_dlist			*ft_highest_in_stack(t_dlist **stack);
 t_dlist			*ft_lowest_in_stack(t_dlist **stack);
-t_dlist			*ft_get_next_higher(t_dlist **stack, t_dlist *last);
-t_dlist			*ft_get_next_lower(t_dlist **stack, t_dlist *last);
-int				ft_is_sorted(t_dlist **stack);
+t_dlist			*ft_next_higher(t_dlist **stack, t_dlist *last);
+t_dlist			*ft_next_lower(t_dlist **stack, t_dlist *last);
+int				ft_is_sorted_asc(t_dlist **stack);
+int				ft_is_sorted_dsc(t_dlist **stack);
 unsigned int	ft_absolute(int d);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:36:38 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/24 06:32:35 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/24 13:21:41 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_distance(t_dlist *start, t_dlist *end)
 		distance++;
 	}
 	if (distance > (size / 2))
-		return ((size - distance) * -1);
+		return (ft_absolute(size - distance) * -1);
 	return (distance);
 }
 

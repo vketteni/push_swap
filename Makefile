@@ -13,11 +13,13 @@ SRCS = push_swap.c \
 	ft_execute_ra_rrb_merge.c \
 	ft_execute_rrr_merge.c \
 	ft_execute_rra_rb_merge.c \
-	ft_sort_simultaneously.c \
+	ft_sort_simultaneous.c \
+	ft_sort_stack.c \
 	ft_execute_queue.c \
+	ft_get_next.c \
 	relations.c \
 	distances.c \
-	ft_is_sorted.c \
+	sorted.c \
 	ft_absolute.c \
 
 

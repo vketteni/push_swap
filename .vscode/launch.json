@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug (lldb)",
+            "name": "Debug",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/push_swap",
@@ -11,7 +11,9 @@
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "lldb"
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb"
+        
         }
     ]
 }

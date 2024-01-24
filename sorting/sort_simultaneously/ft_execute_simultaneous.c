@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_sorted.c                                     :+:      :+:    :+:   */
+/*   ft_execute_simultaneous.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/23 02:48:10 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/23 02:57:44 by vketteni         ###   ########.fr       */
+/*   Created: 2024/01/22 14:33:27 by vketteni          #+#    #+#             */
+/*   Updated: 2024/01/24 18:46:09 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../../push_swap.h"
 
-int ft_is_sorted(t_dlist **stack)
+void	ft_execute_simultanous(t_dlist ***stacks, int *operations)
 {
-    while (*stack != 0)
-    {
-        if ((*stack)->next != (*stack)->next_lowest)
-            return(0);
-        stack = &((*stack)->next);
-    }
-    return (1);
+	if (operations[A] == ROTATE)
+		ft_rr(stacks[A], stacks[B]);
+	else if (operations[A] == REVERSE_ROTATE)
+		ft_rrr(stacks[A], stacks[B]);
+	else if (operations[A] == SWAP)
+		ft_ss(stacks[A], stacks[B]);
+	operations[A] = -1;
+	operations[B] = -1;
 }
+
