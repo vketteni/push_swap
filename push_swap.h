@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/25 12:16:02 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/25 19:59:23 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,14 @@ void			ft_divide_upto_median(t_dlist **stack_a, t_dlist **stack_b);
 void			ft_merge(t_dlist **stack_a, t_dlist **stack_b);
 void			ft_sort_and_print(t_dlist **stack_a);
 void			ft_sort_simultaneous(t_dlist **stack_a, t_dlist **stack_b);
+int				ft_next_operation_a(t_dlist **stack, t_dlist *last,
+					t_dlist *next);
+int				ft_next_operation_b(t_dlist **stack, t_dlist *last,
+					t_dlist *next);
 void			ft_execute_queue(int *operation_queue, t_dlist ***stacks,
 					t_dlist **last, t_dlist **next);
+t_dlist			*ft_get_next_a(t_dlist **stack, t_dlist *last);
+t_dlist			*ft_get_next_b(t_dlist **stack, t_dlist *last);
 t_dlist			*ft_get_median(t_dlist **stack);
 
 /*
@@ -85,9 +91,7 @@ void			ft_execute_ra_rrb_merge(t_dlist **stack_a, t_dlist **stack_b,
  */
 int				ft_distance_to_closest_lt_median(t_dlist *start,
 					t_dlist *median);
-int				ft_distance_to_closest_adjacent_value(t_dlist *start,
-					t_dlist *next_highest, t_dlist *next_lowest);
-int				ft_distance(t_dlist *start, t_dlist *end);
+int				ft_distance_between(t_dlist *start, t_dlist *end);
 int				ft_distance_by_rotation(t_dlist *start, t_dlist *end);
 int				ft_distance_by_reverse_rotation(t_dlist *start, t_dlist *end);
 t_dlist			*ft_highest_in_stack(t_dlist **stack);
@@ -97,5 +101,6 @@ t_dlist			*ft_next_lower(t_dlist **stack, t_dlist *last);
 int				ft_is_sorted_asc(t_dlist **stack);
 int				ft_is_sorted_dsc(t_dlist **stack);
 unsigned int	ft_absolute(int d);
+int				ft_is_greater_than(t_dlist *next, t_dlist *last);
 
 #endif

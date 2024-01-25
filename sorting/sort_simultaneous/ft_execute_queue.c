@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:33:27 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/25 12:16:02 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/25 19:45:56 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static void	execute_single(t_dlist ***stacks, int *operation_queue,
 {
 	if (*stacks[A] && *stacks[B])
 	{
-		if (ft_absolute(ft_distance(last[A],
-					next[A])) < ft_absolute(ft_distance(last[B], next[B])))
+		if (ft_absolute(ft_distance_between(last[A],
+					next[A])) < ft_absolute(ft_distance_between(last[B], next[B])))
 			execute_a(stacks[A], operation_queue);
 		else if (*stacks[B])
 			execute_b(stacks[B], operation_queue);

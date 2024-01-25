@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 19:17:22 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/24 10:55:24 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:38:08 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,11 @@ t_dlist *ft_next_lower(t_dlist **stack, t_dlist *last)
         stack = &((*stack)->next);
     }
     return (lower);
+}
+
+int ft_is_greater_than(t_dlist *next, t_dlist *last)
+{
+    if (*(int *)(next->content) > *(int *)(last->content))
+        return (1);
+    return (0);
 }

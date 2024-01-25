@@ -7,7 +7,7 @@ int main()
     t_dlist node1;
     node1.prev = NULL;
     node1.next = NULL;
-    int distance1 = ft_distance(&node1, &node1);
+    int distance1 = ft_distance_between(&node1, &node1);
     printf("Distance: %d\n", distance1); // Expected output: 0
 
     // Test case 2: start is before end in the list
@@ -18,7 +18,7 @@ int main()
     node2_2.next = &node2_3;
     node2_3.prev = &node2_2;
     node2_3.next = NULL;
-    int distance2 = ft_distance(&node2_1, &node2_3);
+    int distance2 = ft_distance_between(&node2_1, &node2_3);
     printf("Distance: %d\n", distance2); // Expected output: 2
 
     // Test case 3: start is after end in the list
@@ -29,7 +29,7 @@ int main()
     node3_2.next = &node3_3;
     node3_3.prev = &node3_2;
     node3_3.next = NULL;
-    int distance3 = ft_distance(&node3_3, &node3_1);
+    int distance3 = ft_distance_between(&node3_3, &node3_1);
     printf("Distance: %d\n", distance3); // Expected output: -2
 
     return 0;
