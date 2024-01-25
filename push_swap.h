@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/24 18:46:04 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:16:02 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define ROTATE 1
 # define REVERSE_ROTATE 2
 # define SWAP 3
+# define WAIT -1
 
 # include "submodules/ft_printf/ft_printf.h"
 # include "submodules/libft/libft.h"
@@ -63,11 +64,9 @@ void			ft_divide_upto_median(t_dlist **stack_a, t_dlist **stack_b);
 void			ft_merge(t_dlist **stack_a, t_dlist **stack_b);
 void			ft_sort_and_print(t_dlist **stack_a);
 void			ft_sort_simultaneous(t_dlist **stack_a, t_dlist **stack_b);
-void			ft_execute_simultanous(t_dlist ***stacks, int *operations);
-void			ft_execute_stacks(t_dlist ***stacks, int *operation_queue,
+void			ft_execute_queue(int *operation_queue, t_dlist ***stacks,
 					t_dlist **last, t_dlist **next);
 t_dlist			*ft_get_median(t_dlist **stack);
-t_dlist			*ft_get_next(t_dlist **stack, t_dlist *last);
 
 /*
  *	MERGES

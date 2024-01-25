@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_execute_stacks.c                                :+:      :+:    :+:   */
+/*   ft_execute_queue.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:33:27 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/24 18:47:09 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/25 12:16:02 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	execute_b(t_dlist **stack, int *operation_queue)
 		ft_rrb(stack);
 	if (operation_queue[B] == SWAP)
 		ft_sb(stack);
-	operation_queue[B] = -1;
+	operation_queue[B] = WAIT;
 }
 
 static void	execute_a(t_dlist **stack, int *operation_queue)
@@ -31,27 +31,45 @@ static void	execute_a(t_dlist **stack, int *operation_queue)
 		ft_rra(stack);
 	if (operation_queue[A] == SWAP)
 		ft_sa(stack);
-	operation_queue[A] = -1;
+	operation_queue[A] = WAIT;
 }
 
-void	ft_execute_stacks(t_dlist ***stacks, int *operation_queue,
+static void	execute_simultanous(t_dlist ***stacks, int *operations)
+{
+	if (operations[A] == ROTATE)
+		ft_rr(stacks[A], stacks[B]);
+	else if (operations[A] == REVERSE_ROTATE)
+		ft_rrr(stacks[A], stacks[B]);
+	else if (operations[A] == SWAP)
+		ft_ss(stacks[A], stacks[B]);
+	operations[A] = WAIT;
+	operations[B] = WAIT;
+}
+
+static void	execute_single(t_dlist ***stacks, int *operation_queue,
 		t_dlist **last, t_dlist **next)
 {
-	int	distance_next_a;
-	int	distance_next_b;
-
 	if (*stacks[A] && *stacks[B])
 	{
-		distance_next_a = ft_distance(last[A], next[A]);
-		distance_next_b = ft_distance(last[B], next[B]);
 		if (ft_absolute(ft_distance(last[A],
 					next[A])) < ft_absolute(ft_distance(last[B], next[B])))
-			execute_a(stacks[A], operation_queue, last, next);
+			execute_a(stacks[A], operation_queue);
 		else if (*stacks[B])
-			execute_b(stacks[B], operation_queue, last, next);
+			execute_b(stacks[B], operation_queue);
 	}
 	else if (*stacks[A])
-		execute_a(stacks[A], operation_queue, last, next);
+		execute_a(stacks[A], operation_queue);
 	else
-		execute_b(stacks[B], operation_queue, last, next);
+		execute_b(stacks[B], operation_queue);
+}
+
+void	ft_execute_queue(int *operation_queue, t_dlist ***stacks,
+		t_dlist **last, t_dlist **next)
+{
+	if (operation_queue[A] == operation_queue[B]
+		&& (operation_queue[A] == ROTATE || operation_queue[A] == REVERSE_ROTATE
+			|| operation_queue[A] == SWAP))
+		execute_simultanous(stacks, operation_queue);
+	else
+		execute_single(stacks, operation_queue, last, next);
 }
