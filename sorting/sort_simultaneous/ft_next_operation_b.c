@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:20:27 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/25 19:45:56 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/25 23:09:27 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ static int	next_operation_lt_dsc(int distance_head_next, int distance_last_next)
 }
 
 
-int	ft_next_operation_b(t_dlist **stack, t_dlist *last, t_dlist *next)
+int	ft_next_operation_b(t_dlist **stack_b, t_dlist *last, t_dlist *next)
 {
 	int	distance_head_next;
 	int	distance_last_next;
 
-	if (!(*stack) || !next)
+	if (!(*stack_b) || !next || ft_is_sorted_dsc(stack_b))
 		return (WAIT);
-	distance_head_next = ft_distance_between(*stack, next);
+	distance_head_next = ft_distance_between(*stack_b, next);
 	distance_last_next = ft_distance_between(last, next);
 	if (ft_is_greater_than(next, last))
 		return (next_operation_gt_dsc(distance_head_next,

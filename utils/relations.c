@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 19:17:22 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/25 17:38:08 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/26 00:02:36 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_dlist *ft_highest_in_stack(t_dlist **stack)
     {
         if (*(int *)(tmp->content) > *(int *)(highest->content))
             highest = tmp;
+		tmp = tmp->next;
     }
     return (highest);
 }

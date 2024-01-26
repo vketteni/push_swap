@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 19:27:31 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/25 19:56:08 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/25 23:00:13 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,5 @@ int	ft_distance_between(t_dlist *start, t_dlist *end)
 	distance_backwards = backwards(start, end);
 	if (distance_forwards < distance_backwards)
 		return (distance_forwards);
-	return (distance_backwards);
+	return (-distance_backwards);
 }

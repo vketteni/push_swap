@@ -12,16 +12,28 @@
 
 #include "../../push_swap.h"
 
-
-
 static void	update_last_next(t_dlist ***stacks, t_dlist **last, t_dlist **next)
 {
-	while (*(stacks[A]) && ft_absolute(ft_distance_between(last[A], next[A])) == 1)
+	while (*(stacks[A]) && next[A] && ft_is_greater_than(next[A], last[A])
+		&& ft_distance_between(last[A], next[A]) == 1)
 	{
 		last[A] = next[A];
 		next[A] = ft_get_next_a(stacks[A], last[A]);
 	}
-	while (*(stacks[B]) && ft_absolute(ft_distance_between(last[B], next[B])) == 1)
+	while (*(stacks[A]) && next[A] && !ft_is_greater_than(next[A], last[A])
+		&& ft_distance_between(last[A], next[A]) == -1)
+	{
+		last[A] = next[A];
+		next[A] = ft_get_next_a(stacks[A], last[A]);
+	}
+	while (*(stacks[B]) && next[B] && ft_is_greater_than(next[B], last[B])
+		&& ft_distance_between(last[B], next[B]) == -1)
+	{
+		last[B] = next[B];
+		next[B] = ft_get_next_b(stacks[B], last[B]);
+	}
+	while (*(stacks[B]) && next[B] && !ft_is_greater_than(next[B], last[B])
+		&& ft_distance_between(last[B], next[B]) == 1)
 	{
 		last[B] = next[B];
 		next[B] = ft_get_next_b(stacks[B], last[B]);
