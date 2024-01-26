@@ -6,12 +6,19 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/25 19:59:23 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/26 18:03:20 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP
 # define PUSH_SWAP
+
+# define A_B 2
+# define HEAD_TAIL 2
+# define HEAD 0
+# define TAIL 1
+# define A 0
+# define B 1
 
 # define SORTING_STEPS 3
 
@@ -27,9 +34,6 @@
 # define RRA_RB_MERGE 1
 # define RR_MERGE 2
 # define RRR_MERGE 3
-
-# define A 0
-# define B 1
 
 # define PUSH 0
 # define ROTATE 1
@@ -64,14 +68,15 @@ void			ft_divide_upto_median(t_dlist **stack_a, t_dlist **stack_b);
 void			ft_merge(t_dlist **stack_a, t_dlist **stack_b);
 void			ft_sort_and_print(t_dlist **stack_a);
 void			ft_sort_simultaneous(t_dlist **stack_a, t_dlist **stack_b);
-int				ft_next_operation_a(t_dlist **stack, t_dlist *last,
-					t_dlist *next);
-int				ft_next_operation_b(t_dlist **stack, t_dlist *last,
-					t_dlist *next);
-void			ft_execute_queue(int *operation_queue, t_dlist ***stacks,
-					t_dlist **last, t_dlist **next);
-t_dlist			*ft_get_next_a(t_dlist **stack, t_dlist *last);
-t_dlist			*ft_get_next_b(t_dlist **stack, t_dlist *last);
+int				ft_next_operation_a(t_dlist **stack_a,
+					t_dlist *sorted_sublist[A_B][HEAD_TAIL], t_dlist *next);
+int				ft_next_operation_b(t_dlist **stack_b,
+					t_dlist *sorted_sublist[A_B][HEAD_TAIL], t_dlist *next);
+void			ft_execute_queue(t_dlist **stack_a, t_dlist **stack_b,
+					int *operation_queue, int *path_length);
+t_dlist			*ft_get_next(t_dlist **stack,
+					t_dlist *sorted_sublist[A_B][HEAD_TAIL], int *path_length,
+					int stack_id);
 t_dlist			*ft_get_median(t_dlist **stack);
 
 /*

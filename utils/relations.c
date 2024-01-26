@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 19:17:22 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/26 00:02:36 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:23:54 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ t_dlist *ft_next_lower(t_dlist **stack, t_dlist *last)
 {
     t_dlist *lower;
 
+    if (!stack || !last)
+        return (NULL);
     lower = NULL;
     while (*stack != NULL)
     {

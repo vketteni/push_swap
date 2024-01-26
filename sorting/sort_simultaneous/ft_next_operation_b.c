@@ -6,50 +6,50 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:20:27 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/25 23:09:27 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/26 17:35:41 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../push_swap.h"
 
-static int	next_operation_gt_dsc(int distance_head_next, int distance_last_next)
+static int	retrieve_head_operation(int stack_top_to_next, int head_to_next)
 {
-	if (distance_last_next < -1)
+	if (head_to_next < -1)
 	{
-		if (distance_head_next < 0)
+		if (stack_top_to_next < 0)
 			return (REVERSE_ROTATE);
-		else if (distance_head_next == 0)
+		else if (stack_top_to_next == 0)
 			return (SWAP);
 		else
 			return (ROTATE);
 	}
-	if (distance_last_next > -1)
+	if (head_to_next > -1)
 	{
-		if (distance_head_next > 1)
+		if (stack_top_to_next > 1)
 			return (ROTATE);
-		else if (distance_head_next == 1)
+		else if (stack_top_to_next == 1)
 			return (SWAP);
 		return (REVERSE_ROTATE);
 	}
 	return (WAIT);
 }
 
-static int	next_operation_lt_dsc(int distance_head_next, int distance_last_next)
+static int	retrieve_tail_operation(int stack_top_to_next, int tail_to_next)
 {
-	if (distance_last_next < 1)
+	if (tail_to_next < 1)
 	{
-		if (distance_head_next < 0)
+		if (stack_top_to_next < 0)
 			return (REVERSE_ROTATE);
-		else if (distance_head_next == 0)
+		else if (stack_top_to_next == 0)
 			return (SWAP);
 		else
 			return (ROTATE);
 	}
-	if (distance_last_next > 1)
+	if (tail_to_next > 1)
 	{
-		if (distance_head_next > 1)
+		if (stack_top_to_next > 1)
 			return (ROTATE);
-		else if (distance_head_next == 1)
+		else if (stack_top_to_next == 1)
 			return (SWAP);
 		return (REVERSE_ROTATE);
 	}
@@ -57,19 +57,21 @@ static int	next_operation_lt_dsc(int distance_head_next, int distance_last_next)
 }
 
 
-int	ft_next_operation_b(t_dlist **stack_b, t_dlist *last, t_dlist *next)
+int	ft_next_operation_b(t_dlist **stack_b, t_dlist *sorted_sublist[A_B][HEAD_TAIL], t_dlist *next)
 {
-	int	distance_head_next;
-	int	distance_last_next;
+	int	stack_top_to_next;
+	int	head_to_next;
+	int	tail_to_next;
 
 	if (!(*stack_b) || !next || ft_is_sorted_dsc(stack_b))
 		return (WAIT);
-	distance_head_next = ft_distance_between(*stack_b, next);
-	distance_last_next = ft_distance_between(last, next);
-	if (ft_is_greater_than(next, last))
-		return (next_operation_gt_dsc(distance_head_next,
-				distance_last_next));
+	stack_top_to_next = ft_distance_between(*stack_b, next);
+	head_to_next = ft_distance_between(sorted_sublist[B][HEAD], next);
+	tail_to_next = ft_distance_between(sorted_sublist[B][TAIL], next);
+	if (ft_is_greater_than(next, sorted_sublist[B][HEAD]))
+		return (retrieve_head_operation(stack_top_to_next,
+				head_to_next));
 	else
-		return (next_operation_lt_dsc(distance_head_next,
-				distance_last_next));
+		return (retrieve_tail_operation(stack_top_to_next,
+				tail_to_next));
 }

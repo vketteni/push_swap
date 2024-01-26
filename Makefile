@@ -17,8 +17,7 @@ SRCS = push_swap.c \
 	ft_execute_queue.c \
 	ft_next_operation_a.c \
 	ft_next_operation_b.c \
-	ft_get_next_a.c \
-	ft_get_next_b.c \
+	ft_get_next.c \
 	relations.c \
 	distances.c \
 	ft_distance_between.c \
