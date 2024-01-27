@@ -45,18 +45,19 @@ static void	ft_initialize_upper_lower_relations(t_dlist **stack)
 	t_dlist	*next_lowest;
 	t_dlist	*other;
 
-	next_lowest = 0;
+	next_lowest = NULL;
 	current_position = *stack;
 	while (current_position != NULL)
 	{
 		other = *stack; 
+		next_lowest = NULL; 
 		while (other != NULL)
 		{
-			if (*(int*)(other->content) < *(int *)(current_position->content))
-				next_lowest = other;
+			if (other != current_position && *(int*)(other->content) < *(int *)(current_position->content) && (next_lowest == NULL || *(int *)(other->content) > *(int *)(next_lowest->content)))
+					next_lowest = other;
 			other = other->next;
 		}
-		if (next_lowest)
+		if (next_lowest != NULL)
 		{
 			current_position->next_lowest = next_lowest;
 			next_lowest->next_highest = current_position;

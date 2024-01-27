@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/27 13:34:29 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/27 13:56:56 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ int				ft_next_operation_b(t_dlist **stack_b,
 void			ft_execute_queue(t_dlist **stack_a, t_dlist **stack_b,
 					int *operation_queue, int *path_length);
 t_dlist			*ft_get_next(t_dlist **stack,
-					t_dlist *sorted_sublist[A_B][HEAD_TAIL], int *path_length,
-					int stack_id);
+					t_dlist *sorted_sublist[A_B][HEAD_TAIL],
+					int path_length[A_B], int stack_id);
 t_dlist			*ft_get_median(t_dlist **stack);
 void			ft_initialize_sorted_sublist_b(t_dlist *sorted_sublist[A_B][HEAD_TAIL],
 					t_dlist **stack_b);
