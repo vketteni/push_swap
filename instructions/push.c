@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 22:10:10 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/25 22:39:23 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/26 02:14:39 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	push(t_dlist **stack_a, t_dlist **stack_b)
 	first_a = *stack_a;
 	first_b = *stack_b;
 	second_a = first_a->next;
-	first_a->next = first_b;\
+	first_a->next = first_b;
 	if (first_b)
 		first_b->prev = first_a;
 	if (second_a)
