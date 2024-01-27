@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:36:38 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/27 02:52:53 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/27 10:40:51 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,17 @@ int	ft_distance_by_rotation(t_dlist *start, t_dlist *end)
 int	ft_distance_by_reverse_rotation(t_dlist *start, t_dlist *end)
 {
 	int		distance;
-	int		size;
-	t_dlist	*first;
 
-	first = start;
-	while (first->prev != NULL)
-		first = first->prev;
-	size = ft_dlstsize(first);
-	distance = 0;
+	if (start == end)
+		return (0);
+	start = ft_dlstlast(start);
+	distance = 1;
 	while (start != end)
 	{
-		start = start->next;
+		start = start->prev;
 		distance++;
 	}
-	return (size - distance);
+	return (distance);
 }
 
 int	ft_distance_to_closest_lt_median(t_dlist *start, t_dlist *median)

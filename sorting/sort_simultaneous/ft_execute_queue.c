@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 14:33:27 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/27 03:31:02 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/27 12:10:24 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_execute_queue(t_dlist **stack_a, t_dlist **stack_b,
 			|| operation_queue[A] == SWAP))
 		execute_simultanous(stack_a, stack_b, operation_queue);
 	else if ((operation_queue[B] == WAIT && operation_queue[A] != WAIT)
-		|| ft_absolute(path_length[A]) < ft_absolute(path_length[B]))
+		|| (operation_queue[A] != WAIT && ft_absolute(path_length[A]) < ft_absolute(path_length[B])))
 		execute_a(stack_a, operation_queue);
 	else if (operation_queue[B] != WAIT)
 		execute_b(stack_b, operation_queue);

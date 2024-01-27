@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 19:05:44 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/26 20:42:19 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/27 11:53:41 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_dlist	*decide_next(int path_length[A_B],
 	else if (possible_next[HEAD] && !possible_next[TAIL])
 		return (assign_path_and_return(possible_path[HEAD], path_length,
 				possible_next[HEAD], stack_id));
-	else if (possible_path[HEAD] < possible_path[TAIL])
+	else if (ft_absolute(possible_path[HEAD]) < ft_absolute(possible_path[TAIL]))
 		return (assign_path_and_return(possible_path[HEAD], path_length,
 				possible_next[HEAD], stack_id));
 	else

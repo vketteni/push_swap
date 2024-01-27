@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 22:15:55 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/23 16:58:44 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/27 12:17:26 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static void	rotate(t_dlist **stack)
 {
 	t_dlist	*last;
+	t_dlist	*first;
+	t_dlist	*second;
 
 	if (stack == NULL)
 		return ;
@@ -23,11 +25,13 @@ static void	rotate(t_dlist **stack)
 	if ((*stack)->next == NULL)
 		return ;
 	last = ft_dlstlast(*stack);
-	stack = &((*stack)->next);
-	last->next = (*stack)->prev;
-	(last->next)->prev = last;
-	(last->next)->next = NULL;
-	(*stack)->prev =  NULL;
+	first = *stack;
+	second = first->next;
+	*stack = second;
+	last->next = first;
+	first->prev = last;
+	first->next = NULL;
+	second->prev = NULL;
 }
 
 void	ft_ra(t_dlist **stack_a)

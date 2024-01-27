@@ -22,4 +22,5 @@ void	ft_sort_and_print(t_dlist **stack_a)
 	ft_divide_upto_median(stack_a, stack_b);
 	ft_sort_simultaneous(stack_a, stack_b);
 	ft_merge(stack_a, stack_b);
+	
 }

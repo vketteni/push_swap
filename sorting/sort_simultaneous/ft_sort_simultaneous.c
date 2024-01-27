@@ -69,6 +69,8 @@ static void	initialize_start(t_dlist **stack_a, t_dlist **stack_b,
 	sorted_sublist[B][HEAD] = *stack_b;
 	sorted_sublist[A][TAIL] = *stack_a;
 	sorted_sublist[B][TAIL] = *stack_b;
+	ft_initialize_sorted_sublist_a(sorted_sublist, stack_a);
+	ft_initialize_sorted_sublist_b(sorted_sublist, stack_b);
 }
 
 void	ft_sort_simultaneous(t_dlist **stack_a, t_dlist **stack_b)

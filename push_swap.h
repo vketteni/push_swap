@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/26 18:03:20 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/27 13:34:29 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,10 @@ t_dlist			*ft_get_next(t_dlist **stack,
 					t_dlist *sorted_sublist[A_B][HEAD_TAIL], int *path_length,
 					int stack_id);
 t_dlist			*ft_get_median(t_dlist **stack);
-
+void			ft_initialize_sorted_sublist_b(t_dlist *sorted_sublist[A_B][HEAD_TAIL],
+					t_dlist **stack_b);
+void			ft_initialize_sorted_sublist_a(t_dlist *sorted_sublist[A_B][HEAD_TAIL],
+					t_dlist **stack_a);
 /*
  *	MERGES
  */
