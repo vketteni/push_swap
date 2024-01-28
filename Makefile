@@ -17,13 +17,14 @@ SRCS = push_swap.c \
 	ft_execute_queue.c \
 	ft_next_operation_a.c \
 	ft_next_operation_b.c \
-	ft_get_next.c \
+	get_next.c \
 	initialize_sorted_sublists.c \
 	relations.c \
 	distances.c \
 	ft_distance_between.c \
 	sorted.c \
 	ft_absolute.c \
+	ft_path_length.c \
 
 
 OBJS = ${SRCS:.c=.o}

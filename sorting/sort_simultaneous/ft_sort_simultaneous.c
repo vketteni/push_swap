@@ -12,65 +12,55 @@
 
 #include "../../push_swap.h"
 
-static void	update_a(t_dlist **stack, t_dlist *sorted_sublist[A_B][HEAD_TAIL],
-		int *path_length, t_dlist **next)
+static void	update_a(t_dlist **stack_a, t_dlist *sorted_sublist[HEAD_TAIL],
+		int path_length[A_B], t_dlist *next[A_B])
 {
-	while (*stack && next[A])
+	while (*stack_a && next[A] && (ft_is_greater_than(next[A], sorted_sublist[TAIL])
+			&& ft_distance_between(sorted_sublist[TAIL], next[A]) == 1))
 	{
-		if (ft_is_greater_than(next[A], sorted_sublist[A][TAIL])
-			&& ft_distance_between(sorted_sublist[A][TAIL], next[A]) == 1)
-		{
-			sorted_sublist[A][TAIL] = next[A];
-			next[A] = ft_get_next(stack, sorted_sublist, path_length, A);
-			path_length[A] = 0;
-		}
-		if (!ft_is_greater_than(next[A], sorted_sublist[A][TAIL])
-			&& ft_distance_between(sorted_sublist[A][HEAD], next[A]) == -1)
-		{
-			sorted_sublist[A][HEAD] = next[A];
-			next[A] = ft_get_next(stack, sorted_sublist, path_length, A);
-			path_length[A] = 0;
-		}
-		else
-			break ;
+		sorted_sublist[TAIL] = next[A];
+		next[A] = ft_next_a(stack_a, sorted_sublist, path_length);
 	}
+	while (*stack_a && next[A] && (!ft_is_greater_than(next[A], sorted_sublist[HEAD])
+			&& ft_distance_between(sorted_sublist[HEAD], next[A]) == -1))
+	{
+		sorted_sublist[HEAD] = next[A];
+		next[A] = ft_next_a(stack_a, sorted_sublist, path_length);
+	}
+	if (next[A] == NULL)
+		path_length[A] = 0;
 }
 
-static void	update_b(t_dlist **stack, t_dlist *sorted_sublist[A_B][HEAD_TAIL],
-		int *path_length, t_dlist **next)
+static void	update_b(t_dlist **stack_b, t_dlist *sorted_sublist[HEAD_TAIL],
+		int path_length[A_B], t_dlist *next[A_B])
 {
-	while (*stack && next[B])
+	while (*stack_b && next[B] && (!ft_is_greater_than(next[B], sorted_sublist[TAIL])
+			&& ft_distance_between(sorted_sublist[TAIL], next[B]) == 1))
 	{
-		if (ft_is_greater_than(next[B], sorted_sublist[B][HEAD])
-			&& (ft_distance_between(sorted_sublist[B][HEAD], next[B]) == -1))
-		{
-			sorted_sublist[B][HEAD] = next[B];
-			next[B] = ft_get_next(stack, sorted_sublist, path_length, B);
-			path_length[B] = 0;
-		}
-		if (!ft_is_greater_than(next[B], sorted_sublist[B][TAIL])
-			&& (ft_distance_between(sorted_sublist[B][TAIL], next[B]) == 1))
-		{
-			sorted_sublist[B][HEAD] = next[B];
-			next[B] = ft_get_next(stack, sorted_sublist, path_length, B);
-			path_length[B] = 0;
-		}
-		else
-			break ;
+		sorted_sublist[TAIL] = next[B];
+		next[B] = ft_next_b(stack_b, sorted_sublist, path_length);
 	}
+	while (*stack_b && next[B] && (ft_is_greater_than(next[B], sorted_sublist[HEAD])
+			&& ft_distance_between(sorted_sublist[HEAD], next[B]) == -1))
+	{
+		sorted_sublist[HEAD] = next[B];
+		next[B] = ft_next_b(stack_b, sorted_sublist, path_length);
+	}
+	if (next[B] == NULL)
+		path_length[A] = 0;
 }
 
-static void	initialize_start(t_dlist **stack_a, t_dlist **stack_b,
-		int *path_length, t_dlist *sorted_sublist[A_B][HEAD_TAIL])
+
+
+static void	initialize_sorted_sublists(t_dlist **stack_a, t_dlist **stack_b,
+		t_dlist *sorted_sublist[A_B][HEAD_TAIL])
 {
-	path_length[A] = 0;
-	path_length[B] = 0;
 	sorted_sublist[A][HEAD] = *stack_a;
 	sorted_sublist[B][HEAD] = *stack_b;
 	sorted_sublist[A][TAIL] = *stack_a;
 	sorted_sublist[B][TAIL] = *stack_b;
-	ft_initialize_sorted_sublist_a(sorted_sublist, stack_a);
-	ft_initialize_sorted_sublist_b(sorted_sublist, stack_b);
+	ft_initialize_sorted_sublist_a(sorted_sublist[A], stack_a);
+	ft_initialize_sorted_sublist_b(sorted_sublist[B], stack_b);
 }
 
 void	ft_sort_simultaneous(t_dlist **stack_a, t_dlist **stack_b)
@@ -80,9 +70,9 @@ void	ft_sort_simultaneous(t_dlist **stack_a, t_dlist **stack_b)
 	t_dlist	*next[A_B];
 	int		path_length[A_B];
 
-	initialize_start(stack_a, stack_b, path_length, sorted_sublist);
-	next[A] = ft_get_next(stack_a, sorted_sublist, path_length, A);
-	next[B] = ft_get_next(stack_b, sorted_sublist, path_length, B);
+	initialize_sorted_sublists(stack_a, stack_b, sorted_sublist);
+	next[A] = ft_next_a(stack_a, sorted_sublist[A], path_length);
+	next[B] = ft_next_b(stack_b, sorted_sublist[B], path_length);
 	while (!ft_is_sorted_asc(stack_a) || !ft_is_sorted_dsc(stack_b))
 	{
 		operation_queue[A] = ft_next_operation_a(stack_a, sorted_sublist,
@@ -91,8 +81,8 @@ void	ft_sort_simultaneous(t_dlist **stack_a, t_dlist **stack_b)
 				next[B]);
 		ft_execute_queue(stack_a, stack_b, operation_queue, path_length);
 		if (!ft_is_sorted_asc(stack_a))
-			update_a(stack_a, sorted_sublist, path_length, next);
+			update_a(stack_a, sorted_sublist[A], path_length, next);
 		if (!ft_is_sorted_dsc(stack_b))
-			update_b(stack_b, sorted_sublist, path_length, next);
+			update_b(stack_b, sorted_sublist[B], path_length, next);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/27 13:56:56 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/28 19:21:16 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,13 @@ void			ft_initialize_sorted_sublist_b(t_dlist *sorted_sublist[A_B][HEAD_TAIL],
 					t_dlist **stack_b);
 void			ft_initialize_sorted_sublist_a(t_dlist *sorted_sublist[A_B][HEAD_TAIL],
 					t_dlist **stack_a);
+t_dlist			*ft_next_b(t_dlist **stack_b,
+					t_dlist *sorted_sublist[HEAD_TAIL],
+					int path_length[HEAD_TAIL]);
+t_dlist			*ft_next_a(t_dlist **stack_a,
+					t_dlist *sorted_sublist[HEAD_TAIL],
+					int path_length[HEAD_TAIL]);
+
 /*
  *	MERGES
  */
@@ -110,5 +117,6 @@ int				ft_is_sorted_asc(t_dlist **stack);
 int				ft_is_sorted_dsc(t_dlist **stack);
 unsigned int	ft_absolute(int d);
 int				ft_is_greater_than(t_dlist *next, t_dlist *last);
+int				ft_path_length(t_dlist **stack, t_dlist *last, t_dlist *next);
 
 #endif

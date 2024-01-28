@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:20:27 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/26 17:35:41 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/28 19:53:28 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,21 @@ static int	retrieve_tail_operation(int stack_top_to_next, int tail_to_next)
 	return (WAIT);
 }
 
-
-int	ft_next_operation_b(t_dlist **stack_b, t_dlist *sorted_sublist[A_B][HEAD_TAIL], t_dlist *next)
+int	ft_next_operation_b(t_dlist **stack_b, t_dlist *sorted_sublist[HEAD_TAIL],
+		t_dlist *next)
 {
-	int	stack_top_to_next;
-	int	head_to_next;
-	int	tail_to_next;
+	int stack_top_to_next;
+	int head_to_next;
+	int tail_to_next;
 
 	if (!(*stack_b) || !next || ft_is_sorted_dsc(stack_b))
 		return (WAIT);
 	stack_top_to_next = ft_distance_between(*stack_b, next);
-	head_to_next = ft_distance_between(sorted_sublist[B][HEAD], next);
-	tail_to_next = ft_distance_between(sorted_sublist[B][TAIL], next);
-	if (ft_is_greater_than(next, sorted_sublist[B][HEAD]))
-		return (retrieve_head_operation(stack_top_to_next,
-				head_to_next));
+	head_to_next = ft_distance_between(sorted_sublist[HEAD], next);
+	tail_to_next = ft_distance_between(sorted_sublist[TAIL], next);
+	if (ft_is_greater_than(next, sorted_sublist[HEAD])
+		&& sorted_sublist[HEAD] != ft_highest_in_stack(stack_b))
+		return (retrieve_head_operation(stack_top_to_next, head_to_next));
 	else
-		return (retrieve_tail_operation(stack_top_to_next,
-				tail_to_next));
+		return (retrieve_tail_operation(stack_top_to_next, tail_to_next));
 }
