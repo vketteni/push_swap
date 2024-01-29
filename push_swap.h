@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/28 19:21:16 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/01/29 01:31:43 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,15 @@ void			ft_merge(t_dlist **stack_a, t_dlist **stack_b);
 void			ft_sort_and_print(t_dlist **stack_a);
 void			ft_sort_simultaneous(t_dlist **stack_a, t_dlist **stack_b);
 int				ft_next_operation_a(t_dlist **stack_a,
-					t_dlist *sorted_sublist[A_B][HEAD_TAIL], t_dlist *next);
+					t_dlist *sorted_sublist[HEAD_TAIL], t_dlist *next);
 int				ft_next_operation_b(t_dlist **stack_b,
-					t_dlist *sorted_sublist[A_B][HEAD_TAIL], t_dlist *next);
+					t_dlist *sorted_sublist[HEAD_TAIL], t_dlist *next);
 void			ft_execute_queue(t_dlist **stack_a, t_dlist **stack_b,
 					int *operation_queue, int *path_length);
-t_dlist			*ft_get_next(t_dlist **stack,
-					t_dlist *sorted_sublist[A_B][HEAD_TAIL],
-					int path_length[A_B], int stack_id);
 t_dlist			*ft_get_median(t_dlist **stack);
-void			ft_initialize_sorted_sublist_b(t_dlist *sorted_sublist[A_B][HEAD_TAIL],
+void			ft_initialize_sorted_sublist_b(t_dlist *sorted_sublist[HEAD_TAIL],
 					t_dlist **stack_b);
-void			ft_initialize_sorted_sublist_a(t_dlist *sorted_sublist[A_B][HEAD_TAIL],
+void			ft_initialize_sorted_sublist_a(t_dlist *sorted_sublist[HEAD_TAIL],
 					t_dlist **stack_a);
 t_dlist			*ft_next_b(t_dlist **stack_b,
 					t_dlist *sorted_sublist[HEAD_TAIL],
@@ -88,6 +85,10 @@ t_dlist			*ft_next_b(t_dlist **stack_b,
 t_dlist			*ft_next_a(t_dlist **stack_a,
 					t_dlist *sorted_sublist[HEAD_TAIL],
 					int path_length[HEAD_TAIL]);
+void	ft_update_a(t_dlist **stack_a, t_dlist *sorted_sublist[HEAD_TAIL],
+		int path_length[A_B], t_dlist *next);
+void	ft_update_b(t_dlist **stack_b, t_dlist *sorted_sublist[HEAD_TAIL],
+		int path_length[A_B], t_dlist *next);
 
 /*
  *	MERGES
