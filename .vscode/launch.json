@@ -1,16 +1,19 @@
 {
-	"configurations": [
-	{
-		"name": "(lldb) Launch",
-		"type": "cppdbg",
-		"request": "launch",
-		"program": "${workspaceFolder}/push_swap",
-		"args": ["1","2","8","7","4","9","0","5","3","6"],
-		"stopAtEntry": false,
-		"cwd": "${fileDirname}",
-		"environment": [],
-		"externalConsole": false,
-		"MIMode": "lldb"
-	}
-	]
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/push_swap",
+            "args": ["10","18","2","0","77","59","97","37","46","95","86","64","84","15","79","75","98","26","62","67","14","72","16","49","88","47","6","35","51","39","5","52","23","36","20","28","1","85","100","94","82","54","22","63","40","90","11","25","44","78","48","13","65","31","71","27","74","45","3","38","69","87","89","17","9","60","96","12","53","91","58","56","19","81","93","41","32","33","21","83","80","50","70","24","29","8","68","99","92","66","61","43","4","34","42","76","57","55","30","7"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb"
+        
+        }
+    ]
 }

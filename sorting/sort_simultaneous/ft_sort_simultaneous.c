@@ -44,8 +44,8 @@ void	ft_sort_simultaneous(t_dlist **stack_a, t_dlist **stack_b)
 				next[B]);
 		ft_execute_queue(stack_a, stack_b, operation_queue, path_length);
 		if (!ft_is_sorted_asc(stack_a))
-			ft_update_a(stack_a, sorted_sublist[A], path_length, next[A]);
+			ft_update_a(stack_a, sorted_sublist[A], path_length, next);
 		if (!ft_is_sorted_dsc(stack_b))
-			ft_update_b(stack_b, sorted_sublist[B], path_length, next[B]);
+			ft_update_b(stack_b, sorted_sublist[B], path_length, next);
 	}
 }
