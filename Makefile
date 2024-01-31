@@ -1,16 +1,20 @@
 NAME = push_swap
 SRCS = push_swap.c \
-	push.c \
-	reverse_rotate.c \
-	rotate.c \
-	swap.c \
+	source/intructions/push.c \
+	source/intructions/reverse_rotate.c \
+	source/intructions/rotate.c \
+	source/intructions/swap.c \
+	source/sort_five_or_four.c \
+	source/sort_three.c \
+	source/sort_gt_five.c \
+	utils/util.c \
 	
 
 
 OBJS = ${SRCS:.c=.o}
 CC = cc
 FLAGS = -Wall -Wextra -Werror -g
-vpath %.c sorting sorting/merge sorting/sort_simultaneous sorting/divide_upto_median instructions utils
+
 %.o: %.c 
 	${CC} ${FLAGS} -Isubmodules/libft -Isubmodules/ft_printf -c $? -o $@
 
