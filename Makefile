@@ -4,25 +4,7 @@ SRCS = push_swap.c \
 	reverse_rotate.c \
 	rotate.c \
 	swap.c \
-	ft_divide_upto_median.c \
-	ft_get_median.c \
-	ft_initialize_stack.c \
-	ft_sort_and_print.c \
-	ft_merge.c \
-	ft_execute_rr_merge.c \
-	ft_execute_ra_rrb_merge.c \
-	ft_execute_rrr_merge.c \
-	ft_execute_rra_rb_merge.c \
-	ft_sort_simultaneous.c \
-	ft_execute_queue.c \
-	ft_next_operation_a.c \
-	ft_next_operation_b.c \
-	ft_get_next.c \
-	relations.c \
-	distances.c \
-	ft_distance_between.c \
-	sorted.c \
-	ft_absolute.c \
+	
 
 
 OBJS = ${SRCS:.c=.o}
