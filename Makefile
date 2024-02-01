@@ -1,15 +1,13 @@
 NAME = push_swap
-SRCS = push_swap.c \
-	source/intructions/push.c \
-	source/intructions/reverse_rotate.c \
-	source/intructions/rotate.c \
-	source/intructions/swap.c \
+SRCS = source/instructions/push.c \
+	source/instructions/reverse_rotate.c \
+	source/instructions/rotate.c \
+	source/instructions/swap.c \
 	source/sort_five_or_four.c \
 	source/sort_three.c \
 	source/sort_gt_five.c \
 	utils/util.c \
-	
-
+	push_swap.c \
 
 OBJS = ${SRCS:.c=.o}
 CC = cc

@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/01/31 18:17:00 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/02/01 15:33:49 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	push_a(long *stack_a, long *stack_b, int *stack_size_a,
 
 void	sort_five_or_four(long *stack_a, long *stack_b, int *stack_size_a,
 			int *stack_size_b);
-void	sort_three(long *stack_a, long *stack_b);
+void	sort_three(long *stack_a, int *stack_size_a);
 void	sort_gt_five(long *stack_a, long *stack_b, int *stack_size_a,
 			int *stack_size_b);
 
@@ -43,7 +43,8 @@ void	sort_gt_five(long *stack_a, long *stack_b, int *stack_size_a,
 void	free_stacks(long *stack_a, long *stack_b, int *stack_size_a,
 			int *stack_size_b);
 int		is_number(char *str);
-int check_repetitions(int argc, char **argv);
-int check_out_of_bounds(int argc, char **argv);
+int		check_repetitions(int argc, char **argv);
+int		check_out_of_bounds(int argc, char **argv);
+void	check_already_sorted(int argc, char **argv);
 
 #endif
