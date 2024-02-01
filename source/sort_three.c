@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 12:47:01 by vketteni          #+#    #+#             */
-/*   Updated: 2024/02/01 14:41:30 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:05:13 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	sort_three(long *stack_a, int *stack_size_a)
 		swap_a(stack_a);
 	}
 	else if ((stack_a[1] < stack_a[0] && stack_a[1] > stack_a[2])
-		&& (stack_a[1] < stack_a[0] && stack_a[1] < stack_a[2]))
+		|| (stack_a[1] < stack_a[0] && stack_a[1] < stack_a[2]))
 	{
 		rotate_a(stack_a, stack_size_a);
 		swap_a(stack_a);

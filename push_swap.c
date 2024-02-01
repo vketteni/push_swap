@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 03:09:03 by vketteni          #+#    #+#             */
-/*   Updated: 2024/02/01 15:32:49 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:23:40 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,18 @@ void	initialize_stacks(int argc, char **argv, long *stack_a, long *stack_b)
 			ft_printf("Error\n");
 			exit(-1);
 		}
-		stack_a[i - 1] = ft_atoi(argument);
+		stack_a[i - 1] = ft_atol(argument);
 		i++;
 	}
 }
 
 void	check_args(int argc, char **argv)
 {
+	if (argc < 2)
+	{
+		ft_printf("%s\n", argv[0]);
+		exit(0);
+	}
 	check_repetitions(argc, argv);
 	check_out_of_bounds(argc, argv);
 	check_already_sorted(argc, argv);
