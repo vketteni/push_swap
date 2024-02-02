@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.c                                             :+:      :+:    :+:   */
+/*   util1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:33:03 by vketteni          #+#    #+#             */
-/*   Updated: 2024/02/02 11:28:29 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/02/02 15:22:48 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	check_out_of_bounds(int argc, char **argv)
+void	check_out_of_bounds(int input_list_len, char **input_list)
 {
 	int		i;
 	long	num;
 
-	if (argc == 2)
+	i = 0;
+	while (i < input_list_len)
 	{
-		argv = ft_split(argv[1], ' ');
-		i = 0;
-	}
-	else
-		i = 1;
-	while (i < argc)
-	{
-		num = ft_atol(argv[i]);
+		num = ft_atol(input_list[i]);
 		if (num > INT_MAX || num < INT_MIN)
 		{
 			ft_printf("Error\n");
@@ -50,24 +44,18 @@ int	is_number(char *str)
 	return (0);
 }
 
-int	check_repetitions(int argc, char **argv)
+int	check_repetitions(int input_list_len, char **input_list)
 {
 	int	i;
 	int	j;
 
-	if (argc == 2)
-	{
-		argv = ft_split(argv[1], ' ');
-		i = 0;
-	}
-	else
-		i = 1;
-	while (i < argc)
+	i = 0;
+	while (i < input_list_len)
 	{
 		j = i + 1;
-		while (j < argc)
+		while (j < input_list_len)
 		{
-			if (ft_atol(argv[i]) == ft_atol(argv[j]))
+			if (ft_atol(input_list[i]) == ft_atol(input_list[j]))
 			{
 				ft_printf("Error\n");
 				exit(-1);
@@ -79,23 +67,17 @@ int	check_repetitions(int argc, char **argv)
 	return (0);
 }
 
-void	check_already_sorted(int argc, char **argv)
+void	check_already_sorted(int input_list_len, char **input_list)
 {
 	int	prev;
 	int	next;
 	int	i;
 
-	if (argc == 2)
+	i = 1;
+	while (i < input_list_len)
 	{
-		argv = ft_split(argv[1], ' ');
-		i = 1;
-	}
-	else
-		i = 2;
-	while (i < argc)
-	{
-		prev = ft_atol(argv[i - 1]);
-		next = ft_atol(argv[i]);
+		prev = ft_atol(input_list[i - 1]);
+		next = ft_atol(input_list[i]);
 		if (prev > next)
 			return ;
 		i++;

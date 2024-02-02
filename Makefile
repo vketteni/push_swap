@@ -6,7 +6,9 @@ SRCS = source/instructions/push.c \
 	source/sort_five_or_four.c \
 	source/sort_three.c \
 	source/sort_gt_five.c \
-	utils/util.c \
+	source/initialize.c \
+	utils/util1.c \
+	utils/util2.c \
 	push_swap.c \
 
 OBJS = ${SRCS:.c=.o}
