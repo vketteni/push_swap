@@ -6,12 +6,12 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/02/02 15:36:07 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/02/02 17:35:20 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 # include "submodules/ft_printf/ft_printf.h"
 # include "submodules/libft/libft.h"
@@ -38,7 +38,7 @@ void	sort_three(long *stack_a, int *stack_size_a);
 void	sort_gt_five(long *stack_a, long *stack_b, int *stack_size_a,
 			int *stack_size_b);
 void	initialize_stack_size(int input_list_len, int *stack_size_a,
-		int *stack_size_b);
+			int *stack_size_b);
 void	initialize_stacks(int input_list_len, char **input_list, long *stack_a,
 			long *stack_b);
 void	initialize_inputs(int argc, char **argv, int *input_list_len,
