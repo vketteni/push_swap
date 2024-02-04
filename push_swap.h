@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/02/02 17:35:20 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:34:54 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,25 @@ void	sort_gt_five(long *stack_a, long *stack_b, int *stack_size_a,
 			int *stack_size_b);
 void	initialize_stack_size(int input_list_len, int *stack_size_a,
 			int *stack_size_b);
-void	initialize_stacks(int input_list_len, char **input_list, long *stack_a,
+int		initialize_stacks(int input_list_len, char **input_list, long *stack_a,
 			long *stack_b);
-void	initialize_inputs(int argc, char **argv, int *input_list_len,
-			char ***input_list);
+char	**initialize_inputs(int argc, char **argv, int *input_list_len);
 
 /*
  *	UTILS
  */
 void	free_stacks(long *stack_a, long *stack_b, int *stack_size_a,
 			int *stack_size_b);
-int		is_number(char *str);
+int		check_number(int input_list_len, char **input_list);
 void	check_out_of_bounds(int input_list_len, char **input_list);
 int		check_repetitions(int input_list_len, char **input_list);
 void	check_already_sorted(int input_list_len, char **input_list);
 long	ft_atol(const char *nptr);
+void	free_arr(void **arr);
+void	free_stacks_exit(long *stack_a, long *stack_b, int *stack_size_a,
+			int *stack_size_b);
+void	free_arr_exit(void **arr);
+void	check_args(int input_list_len, char **input_list);
+int		is_number(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:33:03 by vketteni          #+#    #+#             */
-/*   Updated: 2024/02/02 15:22:48 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:37:04 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,34 @@ void	check_out_of_bounds(int input_list_len, char **input_list)
 		num = ft_atol(input_list[i]);
 		if (num > INT_MAX || num < INT_MIN)
 		{
-			ft_printf("Error\n");
+			ft_putendl_fd("Error", 2);
 			exit(-1);
 		}
 		i++;
 	}
 }
 
-int	is_number(char *str)
+int	check_number(int input_list_len, char **input_list)
 {
-	while (*str)
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < input_list_len)
 	{
-		if (ft_isdigit(*str) == 0)
+		j = 0;
+		while (input_list[i][j])
 		{
-			ft_printf("Error\n");
-			exit(-1);
+			if (!ft_isdigit(input_list[i][j]))
+			{
+				free_arr((void **)input_list);
+				ft_putendl_fd("Error", 2);
+				exit(-1);
+			}
+			j++;
 		}
-		str++;
+		i++;
 	}
 	return (0);
 }
@@ -57,7 +68,8 @@ int	check_repetitions(int input_list_len, char **input_list)
 		{
 			if (ft_atol(input_list[i]) == ft_atol(input_list[j]))
 			{
-				ft_printf("Error\n");
+				free_arr((void **)input_list);
+				ft_putendl_fd("Error", 2);
 				exit(-1);
 			}
 			j++;
@@ -82,7 +94,6 @@ void	check_already_sorted(int input_list_len, char **input_list)
 			return ;
 		i++;
 	}
-	ft_printf("Already sorted.\n");
 	exit(0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 03:09:03 by vketteni          #+#    #+#             */
-/*   Updated: 2024/02/02 15:35:37 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/02/04 17:28:00 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	sort(int input_list_len, char **input_list)
 	initialize_stack_size(input_list_len, stack_size_a, stack_size_b);
 	stack_a = (long *)malloc(sizeof(long) * (input_list_len));
 	stack_b = (long *)malloc(sizeof(long) * (input_list_len));
-	if (!stack_a || !stack_b || !stack_size_a || !stack_size_b)
-		exit(-1);
-	initialize_stacks(input_list_len, input_list, stack_a, stack_b);
+	if (!stack_a || !stack_b || !stack_size_a || !stack_size_b
+		|| !initialize_stacks(input_list_len, input_list, stack_a, stack_b))
+		free_stacks_exit(stack_a, stack_b, stack_size_a, stack_size_b);
 	if (stack_size_a[1] == 2)
 		rotate_a(stack_a, stack_size_a);
 	else if (stack_size_a[1] == 3)
@@ -44,8 +44,8 @@ int	main(int argc, char **argv)
 	char	**input_list;
 
 	input_list_len = 0;
-	input_list = NULL;
-	initialize_inputs(argc, argv, &input_list_len, &input_list);
+	input_list = initialize_inputs(argc, argv, &input_list_len);
 	sort(input_list_len, input_list);
+	free_arr((void **)input_list);
 	return (0);
 }

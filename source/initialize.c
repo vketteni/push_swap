@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 14:16:36 by vketteni          #+#    #+#             */
-/*   Updated: 2024/02/02 16:04:25 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/02/04 18:37:35 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,53 +20,61 @@ void	initialize_stack_size(int input_list_len, int *stack_size_a,
 	*stack_size_b = 0;
 }
 
-void	initialize_stacks(int input_list_len, char **input_list, long *stack_a,
+int	initialize_stacks(int input_list_len, char **input_list, long *stack_a,
 		long *stack_b)
 {
-	int		i;
-	char	*argument;
+	int	i;
 
 	if ((!stack_a || !stack_b))
-		exit(-1);
+		return (0);
 	i = 0;
 	while (i < input_list_len)
 	{
-		argument = input_list[i];
-		if (is_number(argument) == -1)
-		{
-			ft_printf("Error\n");
-			exit(-1);
-		}
-		stack_a[i - 1] = ft_atol(argument);
+		stack_a[i] = ft_atol(input_list[i]);
 		i++;
 	}
+	return (1);
 }
 
-void	initialize_inputs(int argc, char **argv, int *input_list_len,
-		char ***input_list)
+static char	**one_string_inputs(char **argv, int *input_list_len)
 {
-	if (argc == 1 && ft_printf("%s\n", argv[0]))
-		exit(0);
-	else if (argc == 2 && !ft_strchr(argv[1], ' '))
+	char	**input_list;
+
+	input_list = ft_split(argv[1], ' ');
+	if (!input_list)
+		exit(-1);
+	while (input_list[*input_list_len] != NULL)
+		(*input_list_len)++;
+	return (input_list);
+}
+
+static char	**many_inputs(int argc, char **argv, int *input_list_len)
+{
+	char	**input_list;
+
+	input_list = (char **)ft_calloc(sizeof(char *), argc);
+	if (input_list == NULL)
+		exit(-1);
+	while (*input_list_len < argc - 1)
+	{
+		input_list[*input_list_len] = ft_strdup(argv[*input_list_len + 1]);
+		(*input_list_len)++;
+	}
+	return (input_list);
+}
+
+char	**initialize_inputs(int argc, char **argv, int *input_list_len)
+{
+	char	**input_list;
+
+	if (argc <= 1)
+		exit(-1);
+	else if (argc == 2 && !ft_strchr(argv[1], ' ') && is_number(argv[1]))
 		exit(0);
 	else if (argc == 2)
-	{
-		*input_list = ft_split(argv[1], ' ');
-		while ((*input_list)[*input_list_len] != NULL)
-			(*input_list_len)++;
-	}
+		input_list = one_string_inputs(argv, input_list_len);
 	else
-	{
-		*input_list = (char **)malloc(sizeof(char *) * (argc - 1));
-		if (*input_list == NULL)
-			exit(-1);
-		while (*input_list_len < argc - 1)
-		{
-			(*input_list)[*input_list_len] = argv[*input_list_len + 1];
-			(*input_list_len)++;
-		}
-	}
-	check_repetitions(*input_list_len, *input_list);
-	check_out_of_bounds(*input_list_len, *input_list);
-	check_already_sorted(*input_list_len, *input_list);
+		input_list = many_inputs(argc, argv, input_list_len);
+	check_args(*input_list_len, input_list);
+	return (input_list);
 }
