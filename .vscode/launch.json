@@ -6,14 +6,14 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/push_swap",
-            "args": ["2", "3", "0", "1", "68", "39", ],
+            "args": ["1", "3", "2",],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "/usr/bin/gdb"
-        
+            "miDebuggerPath": "/usr/bin/gdb",
+            "preLaunchTask": "make"
         }
     ]
 }

@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 14:16:36 by vketteni          #+#    #+#             */
-/*   Updated: 2024/02/04 18:37:35 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:33:01 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ static char	**many_inputs(int argc, char **argv, int *input_list_len)
 	while (*input_list_len < argc - 1)
 	{
 		input_list[*input_list_len] = ft_strdup(argv[*input_list_len + 1]);
+		if (!input_list[*input_list_len])
+			free_arr_exit((void **)input_list);
 		(*input_list_len)++;
 	}
 	return (input_list);

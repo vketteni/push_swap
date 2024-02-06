@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 12:38:37 by vketteni          #+#    #+#             */
-/*   Updated: 2024/02/02 17:34:00 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/02/06 18:06:46 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	one_into_four(long *stack_a, long *stack_b, int *stack_size_a,
 	}
 	else if (stack_b[0] > stack_a[1] && stack_b[0] < stack_a[2])
 	{
-		reverse_rotate_a(stack_a, stack_size_a);
+		rotate_a(stack_a, stack_size_a);
 		push_a(stack_a, stack_b, stack_size_a, stack_size_b);
 		swap_a(stack_a);
 		reverse_rotate_a(stack_a, stack_size_a);
@@ -63,6 +63,7 @@ static void	one_into_four(long *stack_a, long *stack_b, int *stack_size_a,
 	{
 		reverse_rotate_a(stack_a, stack_size_a);
 		push_a(stack_a, stack_b, stack_size_a, stack_size_b);
+		reverse_rotate_a(stack_a, stack_size_a);
 		reverse_rotate_a(stack_a, stack_size_a);
 		reverse_rotate_a(stack_a, stack_size_a);
 	}

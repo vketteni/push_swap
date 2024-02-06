@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:33:03 by vketteni          #+#    #+#             */
-/*   Updated: 2024/02/04 18:37:04 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/02/04 19:51:57 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,9 @@ void	check_already_sorted(int input_list_len, char **input_list)
 			return ;
 		i++;
 	}
-	exit(0);
+	free_arr((void **)input_list);
+	ft_putendl_fd("Error", 2);
+	exit(-1);
 }
 
 long	ft_atol(const char *nptr)

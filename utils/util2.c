@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 12:59:51 by vketteni          #+#    #+#             */
-/*   Updated: 2024/02/04 18:27:02 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/02/04 19:57:42 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	free_arr(void **arr)
 
 void	free_arr_exit(void **arr)
 {
-	free(arr);
+	free_arr(arr);
 	exit(-1);
 }
 
