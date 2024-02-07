@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 14:16:36 by vketteni          #+#    #+#             */
-/*   Updated: 2024/02/06 16:33:01 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:34:49 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ char	**initialize_inputs(int argc, char **argv, int *input_list_len)
 
 	if (argc <= 1)
 		exit(-1);
-	else if (argc == 2 && !ft_strchr(argv[1], ' ') && is_number(argv[1]))
+	else if (argc == 2 && !ft_strchr(argv[1], ' ') && is_number(argv[1])
+		&& !out_of_bounds(argv[1]))
 		exit(0);
 	else if (argc == 2)
 		input_list = one_string_inputs(argv, input_list_len);

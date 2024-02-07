@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 14:33:03 by vketteni          #+#    #+#             */
-/*   Updated: 2024/02/04 19:51:57 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:38:55 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,15 @@
 void	check_out_of_bounds(int input_list_len, char **input_list)
 {
 	int		i;
-	long	num;
 
 	i = 0;
 	while (i < input_list_len)
 	{
-		num = ft_atol(input_list[i]);
-		if (num > INT_MAX || num < INT_MIN)
+		if (out_of_bounds(input_list[i++]))
 		{
 			ft_putendl_fd("Error", 2);
 			exit(-1);
 		}
-		i++;
 	}
 }
 
@@ -42,6 +39,8 @@ int	check_number(int input_list_len, char **input_list)
 		j = 0;
 		while (input_list[i][j])
 		{
+			if (input_list[i][j] == '-')
+				j++;
 			if (!ft_isdigit(input_list[i][j]))
 			{
 				free_arr((void **)input_list);
@@ -95,8 +94,7 @@ void	check_already_sorted(int input_list_len, char **input_list)
 		i++;
 	}
 	free_arr((void **)input_list);
-	ft_putendl_fd("Error", 2);
-	exit(-1);
+	exit(0);
 }
 
 long	ft_atol(const char *nptr)

@@ -6,7 +6,7 @@
 /*   By: vketteni <vketteni@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:55:06 by vketteni          #+#    #+#             */
-/*   Updated: 2024/02/04 18:34:54 by vketteni         ###   ########.fr       */
+/*   Updated: 2024/02/07 17:34:22 by vketteni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,6 @@ void	free_stacks_exit(long *stack_a, long *stack_b, int *stack_size_a,
 void	free_arr_exit(void **arr);
 void	check_args(int input_list_len, char **input_list);
 int		is_number(char *str);
+int		out_of_bounds(char *num);
 
 #endif
